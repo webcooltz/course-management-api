@@ -2,7 +2,7 @@
 
 const mongodb = require('../db/connect');
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 exports.postLogin = async (req, res, next) => {
@@ -14,10 +14,10 @@ exports.postLogin = async (req, res, next) => {
 		return res.status(401).json({ message: "Invalid email or password" });
 	}
 
-	const passwordMatch = await bcrypt.compare(password, user.password);
-	if (!passwordMatch) {
-		return res.status(401).json({ message: "Invalid email or password" });
-	}
+	// const passwordMatch = await bcrypt.compare(password, user.password);
+	// if (!passwordMatch) {
+	// 	return res.status(401).json({ message: "Invalid email or password" });
+	// }
 
 	const accessToken = jwt.sign(loginInfo, process.env.ACCESS_TOKEN_SECRET);
 	res.status(201).json({ accessToken: accessToken });
