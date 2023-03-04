@@ -3,9 +3,9 @@ const router = express.Router();
 
 router.use('/login', require('./login'));
 router.use('/students', require('./students'));
-router.use('/faculty', require('./faculty'));
-router.use('/books', require('./books'));
-router.use('/courses', require('./courses'));
+// router.use('/faculty', require('./faculty'));
+// router.use('/books', require('./books'));
+// router.use('/courses', require('./courses'));
 router.use('/api-docs', require('./swagger'));
 
 router.get('/', function(req, res, next) {

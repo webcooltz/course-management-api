@@ -3,7 +3,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 const Student = require('../models/student');
-const schemaValidator = require('../util/student-validation');
+const schemaValidator = require('../util/studentValidation');
 
 const getAll = async (req, res) => {
   const result = await mongodb.getDb().db().collection('students').find();

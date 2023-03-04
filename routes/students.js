@@ -2,9 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const studentController = require('../controllers/student');
-const isAuth = require("../util/authToken");
+// const isAuth = require("../util/authToken");
 
-router.get('/', isAuth, studentController.getAll);
+router.get('/', studentController.getAll);
 
 router.get('/:id', studentController.getSingle);
 
