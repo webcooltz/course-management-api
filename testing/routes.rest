@@ -1,0 +1,55 @@
+### ----------------- DEV ------------------ ###
+
+### GET default/index
+GET http://localhost:3000
+### GET 404
+GET http://localhost:3000/404
+### GET API swagger docs
+GET http://localhost:3000/api-docs
+
+### --------- Login ----------
+
+### Get auth token
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": ""
+}
+
+### --------- students ----------
+
+### GET all students with auth
+GET http://localhost:3000/students
+Authorization: Bearer
+
+### GET all students with (BAD) auth
+GET http://localhost:3000/students
+Authorization: Bearer 123
+
+### GET 1 student
+GET http://localhost:3000/students/63def425bb166f3e221a6ef3
+### POST - create student (bad schema)
+POST http://localhost:3000/students HTTP/1.1
+content-type: application/json
+
+{
+  
+}
+### POST - create student (good schema)
+POST http://localhost:3000/students HTTP/1.1
+content-type: application/json
+
+{
+  
+}
+### PUT - update student
+PUT http://localhost:3000/students/63faa4c937b5287f6aa81a37 HTTP/1.1
+content-type: application/json
+
+{
+  
+}
+### DELETE student
+DELETE http://localhost:3000/students/63df5144357029cb10c14e27 HTTP/1.1

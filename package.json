@@ -1,0 +1,45 @@
+{
+  "name": "cse341-course-management",
+  "version": "1.0.0",
+  "description": "A course management system for our CSE 341 BYUI class.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start-dev": "nodemon index.js",
+    "lint": "eslint .",
+    "swagger": "node ./docs/swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webcooltz/cse341-course-management.git"
+  },
+  "author": "webcooltz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webcooltz/cse341-course-management/issues"
+  },
+  "homepage": "https://github.com/webcooltz/cse341-course-management#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "connect": "^3.2.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.6.0",
+    "joi-password-complexity": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.3",
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.3",
+    "swagger-autogen": "^2.22.0"
+  }
+}
