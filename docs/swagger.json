@@ -63,6 +63,9 @@
     },
     "/students/": {
       "get": {
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -75,6 +78,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -124,6 +130,9 @@
     },
     "/students/{id}": {
       "get": {
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -145,6 +154,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [
           {
@@ -201,6 +213,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [
           {
@@ -220,6 +235,219 @@
             "description": "Internal Server Error"
           }
         }
+      }
+    },
+    "/faculty/": {
+      "get": {
+        "tags": [
+          "Faculty"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [
+          "Faculty"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/faculty/{id}": {
+      "get": {
+        "tags": [
+          "Faculty"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Faculty"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Faculty"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/books/": {
+      "get": {
+        "tags": [
+          "Book"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [
+          "Book"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "tags": [
+          "Book"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Book"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Book"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/courses/": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [
+          "Course"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/courses/{id}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Course"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Course"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
       }
     },
     "/api-docs/": {
