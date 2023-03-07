@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "rpg-pvd4.onrender.com",
+      "url": "https://cse341-course-mgmt.onrender.com/",
       "description": "Remote Server"
     },
     {
