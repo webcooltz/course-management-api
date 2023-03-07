@@ -9,7 +9,7 @@ const doc = {
     },
     servers: [
         {
-            url: "rpg-pvd4.onrender.com",
+            url: "https://rpg-pvd4.onrender.com/",
             description: "Remote Server",
         },
         {
