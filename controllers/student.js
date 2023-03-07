@@ -1,8 +1,7 @@
 // student controller
-
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-const Student = require('../models/student');
+// const Student = require('../models/student');
 const schemaValidator = require('../util/studentValidation');
 
 const getAll = async (req, res) => {
@@ -30,15 +29,12 @@ const createStudent = async (req, res) => {
     res.status(400).send({ message: "Request body cannot be empty" });
     return;
   }
-  const student = new Student({
-    studentName: req.body.studentName,
-    level: req.body.level,
-    money: req.body.money,
-    createdAt: req.body.createdAt,
-    lastPlayed: req.body.lastPlayed,
-    owner: req.body.owner,
-    location: req.body.location
-  });
+  const student = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    creditHours: req.body.creditHours
+  };
   const schemaResponse = schemaValidator.validate(student);
   if (schemaResponse.error) {
     res.status(400).send({ message: schemaResponse.error.details[0].message });
@@ -64,13 +60,10 @@ const createStudent = async (req, res) => {
     }
     const studentId = new ObjectId(req.params.id);
     const student = {
-      studentName: req.body.studentName,
-      level: req.body.level,
-      money: req.body.money,
-      createdAt: req.body.createdAt,
-      lastPlayed: req.body.lastPlayed,
-      owner: req.body.owner,
-      location: req.body.location
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      creditHours: req.body.creditHours
     };
     const schemaResponse = schemaValidator.validate(student);
     if (schemaResponse.error) {
