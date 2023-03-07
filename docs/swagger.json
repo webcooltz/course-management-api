@@ -1,15 +1,23 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "title": "RPG",
-    "description": "RPG API for BYUI CSE 341",
+    "title": "Easel",
+    "description": "Administrative management for online education",
     "version": "1.0.0"
   },
-  "host": "rpg-pvd4.onrender.com",
-  "basePath": "/",
-  "schemes": [
-    "https"
+  "servers": [
+    {
+      "url": "rpg-pvd4.onrender.com",
+      "description": "Remote Server"
+    },
+    {
+      "url": "http://localhost:3000/",
+      "description": "Local Server"
+    }
   ],
+  "tags": {
+    "name": "Book"
+  },
   "paths": {
     "/": {
       "get": {
@@ -22,7 +30,38 @@
         }
       }
     },
-    "/characters/": {
+    "/login/": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/": {
       "get": {
         "description": "",
         "produces": [
@@ -37,38 +76,7 @@
       },
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "charName": {
-                  "example": "any"
-                },
-                "level": {
-                  "example": "any"
-                },
-                "money": {
-                  "example": "any"
-                },
-                "createdAt": {
-                  "example": "any"
-                },
-                "lastPlayed": {
-                  "example": "any"
-                },
-                "owner": {
-                  "example": "any"
-                },
-                "location": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -79,10 +87,42 @@
           "500": {
             "description": "Internal Server Error"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "studentName": {
+                    "example": "any"
+                  },
+                  "level": {
+                    "example": "any"
+                  },
+                  "money": {
+                    "example": "any"
+                  },
+                  "createdAt": {
+                    "example": "any"
+                  },
+                  "lastPlayed": {
+                    "example": "any"
+                  },
+                  "owner": {
+                    "example": "any"
+                  },
+                  "location": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
-    "/characters/{id}": {
+    "/students/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -93,7 +133,9 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -109,36 +151,8 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "charName": {
-                  "example": "any"
-                },
-                "level": {
-                  "example": "any"
-                },
-                "money": {
-                  "example": "any"
-                },
-                "createdAt": {
-                  "example": "any"
-                },
-                "lastPlayed": {
-                  "example": "any"
-                },
-                "owner": {
-                  "example": "any"
-                },
-                "location": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -152,139 +166,37 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/users/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "password": {
-                  "example": "any"
-                },
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "studentName": {
+                    "example": "any"
+                  },
+                  "level": {
+                    "example": "any"
+                  },
+                  "money": {
+                    "example": "any"
+                  },
+                  "createdAt": {
+                    "example": "any"
+                  },
+                  "lastPlayed": {
+                    "example": "any"
+                  },
+                  "owner": {
+                    "example": "any"
+                  },
+                  "location": {
+                    "example": "any"
+                  }
                 }
               }
             }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/users/{id}": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "password": {
-                  "example": "any"
-                },
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -295,7 +207,9 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -313,6 +227,106 @@
         "description": "",
         "parameters": [],
         "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Intro to English"
+          },
+          "subject": {
+            "type": "string",
+            "example": "ENG"
+          },
+          "code": {
+            "type": "string",
+            "example": "101"
+          },
+          "description": {
+            "type": "string",
+            "example": "Beginning English course for college level reading."
+          },
+          "creditHours": {
+            "type": "string",
+            "example": "2.0"
+          },
+          "professor": {
+            "type": "string",
+            "example": "Ahab Whalechaser"
+          }
+        }
+      },
+      "Student": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Smith"
+          },
+          "email": {
+            "type": "string",
+            "example": "jsmith@test.com"
+          }
+        }
+      },
+      "Faculty": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Ahab"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Whalechaser"
+          },
+          "bio": {
+            "type": "string",
+            "example": "When I'm not chasing after the big one or grading papers, I like to read the classics."
+          },
+          "email": {
+            "type": "string",
+            "example": "awhalechaser@literatureisreal.com"
+          }
+        }
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Dune"
+          },
+          "author": {
+            "type": "string",
+            "example": "Frank Herbert"
+          },
+          "pages": {
+            "type": "string",
+            "example": "412"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Science Fiction"
+          },
+          "publishYear": {
+            "type": "string",
+            "example": "1965"
+          },
+          "invCount": {
+            "type": "string",
+            "example": "6"
+          }
+        }
       }
     }
   }
