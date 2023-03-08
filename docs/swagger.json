@@ -252,7 +252,27 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "example": "any"
+                  },
+                  "lastName": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/faculty/{id}": {
@@ -288,7 +308,27 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "example": "any"
+                  },
+                  "lastName": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -323,7 +363,30 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "author": {
+                    "example": "any"
+                  },
+                  "genre": {
+                    "example": "any"
+                  },
+                  "publishYear": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/books/{id}": {
@@ -359,7 +422,30 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "author": {
+                    "example": "any"
+                  },
+                  "genre": {
+                    "example": "any"
+                  },
+                  "publishYear": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -394,7 +480,39 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "subject": {
+                    "example": "any"
+                  },
+                  "section": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "faculty": {
+                    "example": "any"
+                  },
+                  "creditHours": {
+                    "example": "any"
+                  },
+                  "books": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/courses/{id}": {
@@ -430,7 +548,39 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "subject": {
+                    "example": "any"
+                  },
+                  "section": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "faculty": {
+                    "example": "any"
+                  },
+                  "creditHours": {
+                    "example": "any"
+                  },
+                  "books": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -475,17 +625,25 @@
             "type": "string",
             "example": "101"
           },
+          "section": {
+            "type": "string",
+            "example": "03"
+          },
           "description": {
             "type": "string",
             "example": "Beginning English course for college level reading."
           },
           "creditHours": {
-            "type": "string",
-            "example": "2.0"
+            "type": "number",
+            "example": 2
           },
-          "professor": {
+          "faculty": {
             "type": "string",
             "example": "Ahab Whalechaser"
+          },
+          "books": {
+            "type": "string",
+            "example": "Moby Dick"
           }
         }
       },
@@ -503,6 +661,10 @@
           "email": {
             "type": "string",
             "example": "jsmith@test.com"
+          },
+          "creditHours": {
+            "type": "number",
+            "example": 25
           }
         }
       },
@@ -549,10 +711,6 @@
           "publishYear": {
             "type": "string",
             "example": "1965"
-          },
-          "invCount": {
-            "type": "string",
-            "example": "6"
           }
         }
       }
