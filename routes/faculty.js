@@ -12,12 +12,24 @@ router.get('/:id', () => {
     // #swagger.tags = ['Faculty']
 });
 
-router.post('/', () => {
+router.post('/', (req, res) => {
     // #swagger.tags = ['Faculty']
+    const faculty = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        bio: req.bio.body,
+        email: req.body.email,
+    };
 } );
 
-router.put('/:id', () => {
+router.put('/:id', (req, res) => {
     // #swagger.tags = ['Faculty']
+    const faculty = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        bio: req.bio.body,
+        email: req.body.email,
+    };
 });
 
 router.delete('/:id', () => {

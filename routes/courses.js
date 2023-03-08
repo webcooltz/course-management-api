@@ -12,12 +12,32 @@ router.get('/:id', () => {
     // #swagger.tags = ['Course']
 });
 
-router.post('/', () => {
+router.post('/', (req, res) => {
     // #swagger.tags = ['Course']
-} );
+    const course = {
+        name: req.body.name,
+        subject: req.body.subject,
+        code: req.code.body,
+        section: req.body.section,
+        description: req.body.description,
+        faculty: req.body.faculty,
+        creditHours: req.body.creditHours,
+        books: req.body.books,
+    };
+});
 
-router.put('/:id', () => {
+router.put('/:id', (req, res) => {
     // #swagger.tags = ['Course']
+    const course = {
+        name: req.body.name,
+        subject: req.body.subject,
+        code: req.code.body,
+        section: req.body.section,
+        description: req.body.description,
+        faculty: req.body.faculty,
+        creditHours: req.body.creditHours,
+        books: req.body.books,
+    };
 });
 
 router.delete('/:id', () => {
