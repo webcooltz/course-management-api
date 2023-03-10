@@ -1,0 +1,84 @@
+[
+    {
+      "title": "All The Light We Cannot See",
+      "author": "Anthony Doerr",
+      "pages": "554",
+      "genre": "Historical Fiction",
+      "publishYear": "2014"
+    },
+  
+    {
+      "title": "The Night Circus",
+      "author": "Erin Morgenstern",
+      "pages": "516",
+      "genre": "Fantasy",
+      "publishYear": "2011"
+    },
+  
+    {
+      "title": "Everything I Never Told You",
+      "author": "Celeste Ng",
+      "pages": "304",
+      "genre": "Contemporary Fiction",
+      "publishYear": "2020"
+    },
+  
+    {
+      "title": "A Man Called Ove",
+      "author": "Fredrick Backman",
+      "pages": "352",
+      "genre": "Contemporary Fiction",
+      "publishYear": "2012"
+    },
+  
+    {
+      "title": "Where The Crawdads Sing",
+      "author": "Delia Owens",
+      "pages": "384",
+      "genre": "Adult Literature & Fiction",
+      "publishYear": "2018"
+    },
+  
+    {
+      "title": "The Kite Runner",
+      "author": "Khaled Hosseini",
+      "pages": "371",
+      "genre": "Contemporary Fiction",
+      "publishYear": "2003"
+    },
+  
+    {
+      "title": "The Martian",
+      "author": "Andy Weir",
+      "pages": "384",
+      "genre": "Science Fiction",
+      "publishYear": "2011"
+    },
+  
+    {
+      "title": "World War Z",
+      "author": "Max Brooks",
+      "pages": "342",
+      "genre": "Science Fiction",
+      "publishYear": "2006"
+    },
+  
+    {
+      "title": "Enders Game",
+      "author": "Orson Scott Card",
+      "pages": "384",
+      "genre": "Science Fiction",
+      "publishYear": "1985",
+      "invCount": "3"
+    },
+  
+    {
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "pages": "412",
+      "genre": "Science Fiction",
+      "publishYear": "1965",
+      "invCount": "6"
+    }
+  ]
+  
