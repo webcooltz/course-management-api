@@ -1,39 +1,17 @@
 // faculty route
 const express = require('express');
 const router = express.Router();
-// const studentController = require('../controllers/student');
+const facultyController = require('../controllers/faculty');
 // const isAuth = require("../util/authToken");
 
-router.get('/', () => {
-    // #swagger.tags = ['Faculty']
-});
+router.get('/', facultyController.getAll);
 
-router.get('/:id', () => {
-    // #swagger.tags = ['Faculty']
-});
+router.get('/:id', facultyController.getSingle);
 
-router.post('/', (req, res) => {
-    // #swagger.tags = ['Faculty']
-    const faculty = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        bio: req.bio.body,
-        email: req.body.email,
-    };
-} );
+router.post('/', facultyController.createFaculty);
 
-router.put('/:id', (req, res) => {
-    // #swagger.tags = ['Faculty']
-    const faculty = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        bio: req.bio.body,
-        email: req.body.email,
-    };
-});
+router.put('/:id', facultyController.updateFaculty);
 
-router.delete('/:id', () => {
-    // #swagger.tags = ['Faculty']
-});
+router.delete('/:id', facultyController.deleteFaculty);
 
 module.exports = router;

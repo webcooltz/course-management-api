@@ -1,4 +1,4 @@
-### ----------------- DEV ------------------ ###
+### ----------------- PROD ------------------ ###
 
 ### GET default/index
 GET http://localhost:3000
@@ -59,3 +59,39 @@ content-type: application/json
 }
 ### DELETE student
 DELETE http://localhost:3000/students/64079cd4e8c284e8b676704f HTTP/1.1
+
+### --------- faculty ----------
+
+### GET all faculty with auth
+GET http://localhost:3000/faculty
+Authorization: Bearer
+
+### GET all faculty with (BAD) auth
+GET http://localhost:3000/faculty
+Authorization: Bearer 123
+
+### GET 1 faculty
+GET http://localhost:3000/faculty/640b53715709a936f541f4e6
+### POST - create faculty (good schema)
+POST http://localhost:3000/faculty HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Kyle",
+  "lastName": "Reese",
+  "bio": "Come with me if you want to live",
+  "email": "jreese@skynet.com"
+}
+
+### PUT - update faculty
+PUT http://localhost:3000/faculty/640b53715709a936f541f4e6 HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "kyle",
+  "lastName": "connor",
+  "bio": "Come with me if you want to live",
+  "email": "kconnor@skynet.com"
+}
+### DELETE faculty
+DELETE http://localhost:3000/faculty/640b53715709a936f541f4e6 HTTP/1.1

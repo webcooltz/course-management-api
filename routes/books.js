@@ -1,41 +1,17 @@
-// material/book route
+// book route
 const express = require('express');
 const router = express.Router();
-// const studentController = require('../controllers/student');
+const bookController = require('../controllers/book');
 // const isAuth = require("../util/authToken");
 
-router.get('/', () => {
-    // #swagger.tags = ['Book']
-});
+router.get('/', bookController.getAll);
 
-router.get('/:id', () => {
-    // #swagger.tags = ['Book']
-});
+router.get('/:id', bookController.getSingle);
 
-router.post('/', (req, res) => {
-    // #swagger.tags = ['Book']
-    const book = {
-        title: req.body.title,
-        author: req.body.author,
-        pages: req.pages.body,
-        genre: req.body.genre,
-        publishYear: req.body.publishYear,
-    };
-} );
+router.post('/', bookController.createBook);
 
-router.put('/:id', (req, res) => {
-    // #swagger.tags = ['Book']
-    const book = {
-        title: req.body.title,
-        author: req.body.author,
-        pages: req.pages.body,
-        genre: req.body.genre,
-        publishYear: req.body.publishYear,
-    };
-});
+router.put('/:id', bookController.updateBook);
 
-router.delete('/:id', () => {
-    // #swagger.tags = ['Book']
-});
+router.delete('/:id', bookController.deleteBook);
 
 module.exports = router;
