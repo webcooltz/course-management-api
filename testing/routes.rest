@@ -29,7 +29,7 @@ GET http://localhost:3000/students
 Authorization: Bearer 123
 
 ### GET 1 student
-GET http://localhost:3000/students/63def425bb166f3e221a6ef3
+GET http://localhost:3000/students/64079a2f810614d41e5a2188
 ### POST - create student (bad schema)
 POST http://localhost:3000/students HTTP/1.1
 content-type: application/json
@@ -42,14 +42,20 @@ POST http://localhost:3000/students HTTP/1.1
 content-type: application/json
 
 {
-  
+  "firstName": "Johnny",
+  "lastName": "Baker",
+  "email": "johnny.baker@example.edu",
+  "creditHours": 61
 }
 ### PUT - update student
-PUT http://localhost:3000/students/63faa4c937b5287f6aa81a37 HTTP/1.1
+PUT http://localhost:3000/students/64079cd4e8c284e8b676704f HTTP/1.1
 content-type: application/json
 
 {
-  
+  "firstName": "Johnny",
+  "lastName": "BGood",
+  "email": "johnny.bgood@example.edu",
+  "creditHours": 61
 }
 ### DELETE student
-DELETE http://localhost:3000/students/63df5144357029cb10c14e27 HTTP/1.1
+DELETE http://localhost:3000/students/64079cd4e8c284e8b676704f HTTP/1.1

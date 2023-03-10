@@ -28,14 +28,17 @@ const doc = {
             name: "Intro to English",
             subject: "ENG",
             code: "101",
+            section: "03",
             description: "Beginning English course for college level reading.",
-            creditHours: "2.0",
-            professor: "Ahab Whalechaser"
+            creditHours: 2.0,
+            faculty: "Ahab Whalechaser",
+            books: "Moby Dick"
         },
         Student: {
             firstName: "John",
             lastName: "Smith",
-            email: "jsmith@test.com"
+            email: "jsmith@test.com",
+            creditHours: 25
         },
         Faculty: {
             firstName: "Ahab",
@@ -48,8 +51,7 @@ const doc = {
             author: "Frank Herbert",
             pages: "412",
             genre: "Science Fiction",
-            publishYear: "1965",
-            invCount: "6"
+            publishYear: "1965"
         },
     },
 };
