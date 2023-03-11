@@ -1,11 +1,9 @@
 const swaggerAutogen = require("swagger-autogen")({ openapi: "3.0.0" });
 
-
-
 const doc = {
     info: {
         title: "Easel",
-        description: "Administrative management for online education"
+        description: "Administrative management for online education",
     },
     servers: [
         {
@@ -17,12 +15,12 @@ const doc = {
             description: "Local Server",
         },
     ],
-    tags: {
-        name: "Course",
-        name: "Student",
-        name: "Faculty",
-        name: "Book"
-    },
+    tags: [
+        { name: "Course", description: "Operations about courses",},
+        { name: "Student", description: "Operations about students" },
+        { name: "Faculty", description: "Operations about faculty" },
+        { name: "Book", description: "Operations about books" },
+    ],
     definitions: {
         Course: {
             name: "Intro to English",
@@ -32,26 +30,26 @@ const doc = {
             description: "Beginning English course for college level reading.",
             creditHours: 2.0,
             faculty: "Ahab Whalechaser",
-            books: "Moby Dick"
+            books: "Moby Dick",
         },
         Student: {
             firstName: "John",
             lastName: "Smith",
             email: "jsmith@test.com",
-            creditHours: 25
+            creditHours: 25,
         },
         Faculty: {
             firstName: "Ahab",
             lastName: "Whalechaser",
             bio: "When I'm not chasing after the big one or grading papers, I like to read the classics.",
-            email: "awhalechaser@literatureisreal.com"
+            email: "awhalechaser@literatureisreal.com",
         },
         Book: {
             title: "Dune",
             author: "Frank Herbert",
             pages: "412",
             genre: "Science Fiction",
-            publishYear: "1965"
+            publishYear: "1965",
         },
     },
 };

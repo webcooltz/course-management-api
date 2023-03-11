@@ -6,6 +6,7 @@ const Course = require('../models/course');
 
 const getAll = async (req, res) => {
     // #swagger.tags = ['Course']
+    // #swagger.summary = 'Get all courses'
     try {
         // const result = await Course.find().exec();
         const result = await mongodb.getDb().db().collection('courses').find().toArray();
@@ -25,6 +26,7 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
     // #swagger.tags = ['Course']
+    // #swagger.summary = 'Get course by id'
     try {
         if (!ObjectId.isValid(req.params.id)) {
             throw {
@@ -60,6 +62,7 @@ const getSingle = async (req, res) => {
 
 const createCourse = async (req, res) => {
     // #swagger.tags = ['Course']
+    // #swagger.summary = 'Create course'
     try {
         // const Course = req.body;
         const course = new Course({
@@ -98,6 +101,7 @@ const createCourse = async (req, res) => {
 
 const updateCourse = async (req, res) => {
     // #swagger.tags = ['Course']
+    // #swagger.summary = 'Update course by id'
     try {
         if (!ObjectId.isValid(req.params.id)) {
             throw {
@@ -149,6 +153,7 @@ const updateCourse = async (req, res) => {
 
 const deleteCourse = async (req, res) => {
     // #swagger.tags = ['Course']
+    // #swagger.summary = 'Delete course by id'
     try {
         if (!ObjectId.isValid(req.params.id)) {
             throw {

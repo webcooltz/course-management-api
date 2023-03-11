@@ -15,9 +15,24 @@
       "description": "Local Server"
     }
   ],
-  "tags": {
-    "name": "Book"
-  },
+  "tags": [
+    {
+      "name": "Course",
+      "description": "Operations about courses"
+    },
+    {
+      "name": "Student",
+      "description": "Operations about students"
+    },
+    {
+      "name": "Faculty",
+      "description": "Operations about faculty"
+    },
+    {
+      "name": "Book",
+      "description": "Operations about books"
+    }
+  ],
   "paths": {
     "/": {
       "get": {
@@ -540,6 +555,7 @@
         "tags": [
           "Course"
         ],
+        "summary": "Get all courses",
         "description": "",
         "parameters": [],
         "responses": {
@@ -555,6 +571,7 @@
         "tags": [
           "Course"
         ],
+        "summary": "Create course",
         "description": "",
         "parameters": [],
         "responses": {
@@ -604,6 +621,7 @@
         "tags": [
           "Course"
         ],
+        "summary": "Get course by id",
         "description": "",
         "parameters": [
           {
@@ -628,6 +646,7 @@
         "tags": [
           "Course"
         ],
+        "summary": "Update course by id",
         "description": "",
         "parameters": [
           {
@@ -684,6 +703,7 @@
         "tags": [
           "Course"
         ],
+        "summary": "Delete course by id",
         "description": "",
         "parameters": [
           {
