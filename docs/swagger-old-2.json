@@ -100,16 +100,25 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": {
+                  "studentName": {
                     "example": "any"
                   },
-                  "lastName": {
+                  "level": {
                     "example": "any"
                   },
-                  "email": {
+                  "money": {
                     "example": "any"
                   },
-                  "creditHours": {
+                  "createdAt": {
+                    "example": "any"
+                  },
+                  "lastPlayed": {
+                    "example": "any"
+                  },
+                  "owner": {
+                    "example": "any"
+                  },
+                  "location": {
                     "example": "any"
                   }
                 }
@@ -176,16 +185,25 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": {
+                  "studentName": {
                     "example": "any"
                   },
-                  "lastName": {
+                  "level": {
                     "example": "any"
                   },
-                  "email": {
+                  "money": {
                     "example": "any"
                   },
-                  "creditHours": {
+                  "createdAt": {
+                    "example": "any"
+                  },
+                  "lastPlayed": {
+                    "example": "any"
+                  },
+                  "owner": {
+                    "example": "any"
+                  },
+                  "location": {
                     "example": "any"
                   }
                 }
@@ -225,15 +243,8 @@
           "Faculty"
         ],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -241,17 +252,7 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "requestBody": {
           "content": {
             "application/json": {
@@ -262,9 +263,6 @@
                     "example": "any"
                   },
                   "lastName": {
-                    "example": "any"
-                  },
-                  "bio": {
                     "example": "any"
                   },
                   "email": {
@@ -283,9 +281,6 @@
           "Faculty"
         ],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -296,11 +291,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -317,17 +308,7 @@
             }
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "requestBody": {
           "content": {
             "application/json": {
@@ -338,9 +319,6 @@
                     "example": "any"
                   },
                   "lastName": {
-                    "example": "any"
-                  },
-                  "bio": {
                     "example": "any"
                   },
                   "email": {
@@ -367,14 +345,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       }
     },
     "/books/": {
@@ -383,15 +354,8 @@
           "Book"
         ],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -399,33 +363,23 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": {
+                  "title": {
                     "example": "any"
                   },
-                  "lastName": {
+                  "author": {
                     "example": "any"
                   },
-                  "bio": {
+                  "genre": {
                     "example": "any"
                   },
-                  "email": {
+                  "publishYear": {
                     "example": "any"
                   }
                 }
@@ -441,9 +395,6 @@
           "Book"
         ],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -454,11 +405,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -475,33 +422,23 @@
             }
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": {
+                  "title": {
                     "example": "any"
                   },
-                  "lastName": {
+                  "author": {
                     "example": "any"
                   },
-                  "bio": {
+                  "genre": {
                     "example": "any"
                   },
-                  "email": {
+                  "publishYear": {
                     "example": "any"
                   }
                 }
@@ -525,14 +462,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       }
     },
     "/courses/": {
@@ -542,14 +472,7 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -557,14 +480,7 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "requestBody": {
           "content": {
             "application/json": {
@@ -615,14 +531,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -639,14 +548,7 @@
             }
           }
         ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "requestBody": {
           "content": {
             "application/json": {
@@ -695,14 +597,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       }
     },
     "/api-docs/": {

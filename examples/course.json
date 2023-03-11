@@ -1,0 +1,92 @@
+[
+{
+    "name": "Introduction to Literary Analysis",
+    "subject": "English",
+    "code": "ENGL 101",
+    "section": "001",
+    "description": "An introduction to the basic tools of literary analysis, including close reading, critical interpretation, and the use of literary terminology.",
+    "faculty": "Jared Guzman",
+    "creditHours": 3,
+    "books": "All The Light We Cannot See" 
+  },
+  {
+    "name": "American Literature I",
+    "subject": "English",
+    "code": "ENGL 210",
+    "section": "001",
+    "description": "A survey of American literature from its beginnings to the Civil War, including works by writers such as Franklin, Poe, Emerson, Thoreau, Melville, and Dickinson.",
+    "faculty": "Gail Holt",
+    "creditHours": 3,
+    "books": "The Night Circus" 
+  },
+  {
+    "name": "Modern British Literature",
+    "subject": "English",
+    "code": "ENGL 320",
+    "section": "001",
+    "description": "A study of selected British authors and works from the early twentieth century to the present, including writers such as Joyce, Woolf, Yeats, Eliot, Beckett, and Rushdie.",
+    "faculty": "Kurt Clements",
+    "creditHours": 3,
+    "books": "Everything I Never Told You" 
+  },
+  {
+    "name": "Shakespearean Comedies",
+    "subject": "English",
+    "code": "ENGL 410",
+    "section": "001",
+    "description": "A study of Shakespeare's major comedies, including works such as A Midsummer Night's Dream, Twelfth Night, and The Merchant of Venice.",
+    "faculty": "Penny Noble",
+    "creditHours": 3,
+    "books": "A Man Called Ove" 
+  },
+  {
+    "name": "The Victorian Novel",
+    "subject": "English",
+    "code": "ENGL 340",
+    "section": "001",
+    "description": "A study of the major Victorian novelists, including Dickens, Eliot, Hardy, and Thackeray, and their treatment of issues such as social class, gender, and imperialism.",
+    "faculty": "Tyler Morrow",
+    "creditHours": 3,
+    "books": "Where The Crawdads Sing" 
+  },
+  {
+    "name": "Creative Writing: Fiction",
+    "subject": "English",
+    "code": "ENGL 450",
+    "section": "001",
+    "description": "An introduction to the craft of fiction writing, including the elements of narrative, character, setting, dialogue, and point of view.",
+    "faculty": "Jasmine Rosario",
+    "creditHours": 3,
+    "books": "The Kite Runner" 
+  },
+  {
+    "name": "The Romantics",
+    "subject": "English",
+    "code": "ENGL 310",
+    "section": "001",
+    "description": "A study of the major Romantic poets, including Wordsworth, Coleridge, Keats, and Shelley, and their treatment of themes such as nature, imagination, and the sublime.",
+    "faculty": "Stacy Kim",
+    "creditHours": 3,
+    "books": "The Martian" 
+  },
+  {
+    "name": "The African-American Literary Tradition",
+    "subject": "English",
+    "code": "ENGL 460",
+    "section": "001",
+    "description": "A survey of African-American literature from its beginnings to the present, including works by writers such as Douglass, Du Bois, Hurston, Baldwin, Morrison, and Coates.",
+    "faculty": "Jeremy Wallace",
+    "creditHours": 3,
+    "books": "World War Z" 
+  },
+  {
+    "name": "Postcolonial Literature",
+    "subject": "English",
+    "code": "ENGL 430",
+    "section": "001",
+    "description": "A study of literature written in English from former colonies of Britain and other European powers, including writers such as Achebe and Rushdie.",
+    "faculty": "Pamela Woodward",
+    "creditHours": 3,
+    "books": "Enders Game" 
+  }
+]
