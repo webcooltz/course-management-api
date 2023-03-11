@@ -5,6 +5,7 @@ const Faculty = require('../models/faculty');
 
 const getAll = async (req, res) => {
   // #swagger.tags = ['Faculty']
+  // #swagger.summary = 'Get all faculty'
   const result = await mongodb.getDb().db().collection('faculty').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
@@ -14,6 +15,7 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
   // #swagger.tags = ['Faculty']
+  // #swagger.summary = 'Get faculty by id'
   const facultyId = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db().collection('faculty').find({ _id: facultyId });
   result.toArray().then((lists) => {
@@ -24,6 +26,7 @@ const getSingle = async (req, res) => {
 
 const createFaculty = async (req, res) => {
   // #swagger.tags = ['Faculty']
+  // #swagger.summary = 'Create faculty'
   if (!req.body) {
     res.status(400).send({ message: "Request body cannot be empty" });
     return;
@@ -48,6 +51,7 @@ const createFaculty = async (req, res) => {
   
   const updateFaculty = async (req, res) => {
     // #swagger.tags = ['Faculty']
+      // #swagger.summary = 'Update faculty by id'
     if (!req.body) {
       res.status(400).send({ message: "Request body cannot be empty" });
       return;
@@ -78,6 +82,7 @@ const createFaculty = async (req, res) => {
   
   const deleteFaculty = async (req, res) => {
     // #swagger.tags = ['Faculty']
+      // #swagger.summary = 'Delete faculty by id'
     const facultyId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('faculty').deleteOne({ _id: facultyId }, true);
     console.log(response);

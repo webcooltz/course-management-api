@@ -81,6 +81,7 @@
         "tags": [
           "Student"
         ],
+        "summary": "Get all students",
         "description": "",
         "produces": [
           "application/json"
@@ -96,6 +97,7 @@
         "tags": [
           "Student"
         ],
+        "summary": "Create student",
         "description": "",
         "parameters": [],
         "responses": {
@@ -139,6 +141,7 @@
         "tags": [
           "Student"
         ],
+        "summary": "Get student by id",
         "description": "",
         "produces": [
           "application/json"
@@ -163,6 +166,7 @@
         "tags": [
           "Student"
         ],
+        "summary": "Update student by id",
         "description": "",
         "parameters": [
           {
@@ -213,6 +217,7 @@
         "tags": [
           "Student"
         ],
+        "summary": "Delete student by id",
         "description": "",
         "parameters": [
           {
@@ -239,6 +244,7 @@
         "tags": [
           "Faculty"
         ],
+        "summary": "Get all faculty",
         "description": "",
         "produces": [
           "application/json"
@@ -254,6 +260,7 @@
         "tags": [
           "Faculty"
         ],
+        "summary": "Create faculty",
         "description": "",
         "parameters": [],
         "responses": {
@@ -297,6 +304,7 @@
         "tags": [
           "Faculty"
         ],
+        "summary": "Get faculty by id",
         "description": "",
         "produces": [
           "application/json"
@@ -321,6 +329,7 @@
         "tags": [
           "Faculty"
         ],
+        "summary": "Update faculty by id",
         "description": "",
         "parameters": [
           {
@@ -371,6 +380,7 @@
         "tags": [
           "Faculty"
         ],
+        "summary": "Delete faculty by id",
         "description": "",
         "parameters": [
           {
@@ -397,6 +407,7 @@
         "tags": [
           "Book"
         ],
+        "summary": "Get all books",
         "description": "",
         "produces": [
           "application/json"
@@ -412,6 +423,7 @@
         "tags": [
           "Book"
         ],
+        "summary": "Create book",
         "description": "",
         "parameters": [],
         "responses": {
@@ -455,6 +467,7 @@
         "tags": [
           "Book"
         ],
+        "summary": "Get book by id",
         "description": "",
         "produces": [
           "application/json"
@@ -479,6 +492,7 @@
         "tags": [
           "Book"
         ],
+        "summary": "Update book by id",
         "description": "",
         "parameters": [
           {
@@ -529,6 +543,7 @@
         "tags": [
           "Book"
         ],
+        "summary": "Delete book by id",
         "description": "",
         "parameters": [
           {

@@ -5,6 +5,7 @@ const Book = require('../models/book');
 
 const getAll = async (req, res) => {
   // #swagger.tags = ['Book']
+  // #swagger.summary = 'Get all books'
   const result = await mongodb.getDb().db().collection('books').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
@@ -14,6 +15,7 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
   // #swagger.tags = ['Book']
+  // #swagger.summary = 'Get book by id'
   const bookId = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db().collection('books').find({ _id: bookId });
   result.toArray().then((lists) => {
@@ -24,6 +26,7 @@ const getSingle = async (req, res) => {
 
 const createBook = async (req, res) => {
   // #swagger.tags = ['Book']
+  // #swagger.summary = 'Create book'
   if (!req.body) {
     res.status(400).send({ message: "Request body cannot be empty" });
     return;
@@ -48,6 +51,7 @@ const createBook = async (req, res) => {
   
   const updateBook = async (req, res) => {
     // #swagger.tags = ['Book']
+    // #swagger.summary = 'Update book by id'
     if (!req.body) {
       res.status(400).send({ message: "Request body cannot be empty" });
       return;
@@ -78,6 +82,7 @@ const createBook = async (req, res) => {
   
   const deleteBook = async (req, res) => {
     // #swagger.tags = ['Book']
+    // #swagger.summary = 'Delete book by id'
     const bookId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('books').deleteOne({ _id: bookId }, true);
     console.log(response);

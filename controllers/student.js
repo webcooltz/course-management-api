@@ -6,6 +6,7 @@ const schemaValidator = require('../util/studentValidation');
 
 const getAll = async (req, res) => {
   // #swagger.tags = ['Student']
+  // #swagger.summary = 'Get all students'
   const result = await mongodb.getDb().db().collection('students').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
@@ -15,6 +16,7 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
   // #swagger.tags = ['Student']
+  // #swagger.summary = 'Get student by id'
   const studentId = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db().collection('students').find({ _id: studentId });
   result.toArray().then((lists) => {
@@ -25,6 +27,7 @@ const getSingle = async (req, res) => {
 
 const createStudent = async (req, res) => {
   // #swagger.tags = ['Student']
+  // #swagger.summary = 'Create student'
   if (!req.body) {
     res.status(400).send({ message: "Request body cannot be empty" });
     return;
@@ -54,6 +57,7 @@ const createStudent = async (req, res) => {
   
   const updateStudent = async (req, res) => {
     // #swagger.tags = ['Student']
+    // #swagger.summary = 'Update student by id'
     if (!req.body) {
       res.status(400).send({ message: "Request body cannot be empty" });
       return;
@@ -89,6 +93,7 @@ const createStudent = async (req, res) => {
   
   const deleteStudent = async (req, res) => {
     // #swagger.tags = ['Student']
+    // #swagger.summary = 'Delete student by id'
     const studentId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('students').deleteOne({ _id: studentId }, true);
     console.log(response);
