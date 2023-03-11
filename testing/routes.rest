@@ -95,3 +95,52 @@ content-type: application/json
 }
 ### DELETE faculty
 DELETE http://localhost:3000/faculty/640b53715709a936f541f4e6 HTTP/1.1
+
+### -----------courses------------
+### GET all courses with auth
+GET http://localhost:3000/courses
+Authorization: Bearer
+
+### GET all courses with (BAD) auth
+GET http://localhost:3000/courses
+Authorization: Bearer 123
+
+### GET 1 student
+GET http://localhost:3000/courses/64079a2f810614d41e5a2188
+### POST - create student (bad schema)
+POST http://localhost:3000/courses HTTP/1.1
+content-type: application/json
+
+{
+  
+}
+### POST - create student (good schema)
+POST http://localhost:3000/courses HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Introduction to Literary Analysis",
+  "subject": "English",
+  "code": "ENGL 101",
+  "section": "001",
+  "description": "An introduction to the basic tools of literary analysis, including close reading, critical interpretation, and the use of literary terminology.",
+  "faculty": "Language",
+  "creditHours": "3",
+  "book":"Moby Dick"
+}
+### PUT - update student
+PUT http://localhost:3000/courses/640cc5b3fc808333188f3a7e HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Introduction to Literary Analysis",
+  "subject": "English",
+  "code": "ENGL 101",
+  "section": "001",
+  "description": "An introduction to the basic tools of literary analysis, including close reading, critical interpretation, and the use of literary terminology.",
+  "faculty": "Language",
+  "creditHours": "3",
+  "book":"Moby Dick"
+}
+### DELETE student
+DELETE http://localhost:3000/courses/640cc44d8ca8f48bf41443a0 HTTP/1.1
