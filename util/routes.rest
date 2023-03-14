@@ -1,4 +1,4 @@
-### ----------------- PROD ------------------ ###
+### ----------------- Dev ------------------ ###
 
 ### GET default/index
 GET http://localhost:3000
@@ -30,13 +30,7 @@ Authorization: Bearer 123
 
 ### GET 1 student
 GET http://localhost:3000/students/64079a2f810614d41e5a2188
-### POST - create student (bad schema)
-POST http://localhost:3000/students HTTP/1.1
-content-type: application/json
 
-{
-  
-}
 ### POST - create student (good schema)
 POST http://localhost:3000/students HTTP/1.1
 content-type: application/json
@@ -71,7 +65,7 @@ GET http://localhost:3000/faculty
 Authorization: Bearer 123
 
 ### GET 1 faculty
-GET http://localhost:3000/faculty/640b53715709a936f541f4e6
+GET http://localhost:3000/faculty/640ae891c1f2d58533956f2a
 ### POST - create faculty (good schema)
 POST http://localhost:3000/faculty HTTP/1.1
 content-type: application/json
@@ -95,3 +89,245 @@ content-type: application/json
 }
 ### DELETE faculty
 DELETE http://localhost:3000/faculty/640b53715709a936f541f4e6 HTTP/1.1
+
+### --------- books ----------
+
+### GET all books with auth
+GET http://localhost:3000/books
+Authorization: Bearer
+
+### GET all books with (BAD) auth
+GET http://localhost:3000/books
+Authorization: Bearer 123
+
+### GET 1 book
+GET http://localhost:3000/books/64109aafca5f253b4f9fe1c2
+### POST - create book (good schema)
+POST http://localhost:3000/books HTTP/1.1
+content-type: application/json
+
+{
+  "title": "A Knight's Tale",
+  "author": "Heath Ledger",
+  "pages": "95",
+  "genre": "Historical Fiction",
+  "publishYear": "1998"
+}
+### PUT - update book
+PUT http://localhost:3000/books/64109aafca5f253b4f9fe1c2 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "A Knight's Tale",
+  "author": "Alan Tudyk",
+  "pages": "95",
+  "genre": "Historical Fiction",
+  "publishYear": "1998"
+}
+### DELETE book
+DELETE http://localhost:3000/books/64109aafca5f253b4f9fe1c2 HTTP/1.1
+
+### --------- courses ----------
+
+### GET all courses with auth
+GET http://localhost:3000/courses
+Authorization: Bearer
+
+### GET all courses with (BAD) auth
+GET http://localhost:3000/courses
+Authorization: Bearer 123
+
+### GET 1 course
+GET http://localhost:3000/courses/64109aafca5f253b4f9fe1c2
+### POST - create course (good schema)
+POST http://localhost:3000/courses HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Introduction to Node JS",
+  "subject": "Web Development",
+  "code": "CSE 341",
+  "section": "001",
+  "description": "Introduction to backend development with Node JS.",
+  "faculty": "John T Booker",
+  "creditHours": 3,
+  "books": "Intro to Backend Dev" 
+}
+### PUT - update course
+PUT http://localhost:3000/courses/64109aafca5f253b4f9fe1c2 HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Introduction to Node JS",
+  "subject": "Web Development",
+  "code": "CSE 341",
+  "section": "001",
+  "description": "Introduction to backend development (creating a server) with Node JS and Express.",
+  "faculty": "Kevin Alabaster",
+  "creditHours": 3,
+  "books": "Intro to Backend Dev" 
+}
+### DELETE course
+DELETE http://localhost:3000/courses/64109aafca5f253b4f9fe1c2 HTTP/1.1
+
+
+### ----------------- Prod ------------------ ###
+
+### GET default/index
+GET https://cse341-course-mgmt.onrender.com
+### GET 404
+GET https://cse341-course-mgmt.onrender.com/404
+### GET API swagger docs
+GET https://cse341-course-mgmt.onrender.com/api-docs
+
+### --------- students ----------
+
+### GET all students with auth
+GET https://cse341-course-mgmt.onrender.com/students
+Authorization: Bearer
+
+### GET all students with (BAD) auth
+GET https://cse341-course-mgmt.onrender.com/students
+Authorization: Bearer 123
+
+### GET 1 student
+GET https://cse341-course-mgmt.onrender.com/students/64079a2f810614d41e5a2188
+
+### POST - create student (good schema)
+POST https://cse341-course-mgmt.onrender.com/students HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Johnny",
+  "lastName": "Baker",
+  "email": "johnny.baker@example.edu",
+  "creditHours": 61
+}
+### PUT - update student
+PUT https://cse341-course-mgmt.onrender.com/students/64079cd4e8c284e8b676704f HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Johnny",
+  "lastName": "BGood",
+  "email": "johnny.bgood@example.edu",
+  "creditHours": 61
+}
+### DELETE student
+DELETE https://cse341-course-mgmt.onrender.com/students/64079cd4e8c284e8b676704f HTTP/1.1
+
+### --------- faculty ----------
+
+### GET all faculty with auth
+GET https://cse341-course-mgmt.onrender.com/faculty
+Authorization: Bearer
+
+### GET all faculty with (BAD) auth
+GET https://cse341-course-mgmt.onrender.com/faculty
+Authorization: Bearer 123
+
+### GET 1 faculty
+GET https://cse341-course-mgmt.onrender.com/faculty/640ae891c1f2d58533956f2a
+### POST - create faculty (good schema)
+POST https://cse341-course-mgmt.onrender.com/faculty HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Kyle",
+  "lastName": "Reese",
+  "bio": "Come with me if you want to live",
+  "email": "jreese@skynet.com"
+}
+
+### PUT - update faculty
+PUT https://cse341-course-mgmt.onrender.com/faculty/640b53715709a936f541f4e6 HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "kyle",
+  "lastName": "connor",
+  "bio": "Come with me if you want to live",
+  "email": "kconnor@skynet.com"
+}
+### DELETE faculty
+DELETE https://cse341-course-mgmt.onrender.com/faculty/640b53715709a936f541f4e6 HTTP/1.1
+
+### --------- books ----------
+
+### GET all books with auth
+GET https://cse341-course-mgmt.onrender.com/books
+Authorization: Bearer
+
+### GET all books with (BAD) auth
+GET https://cse341-course-mgmt.onrender.com/books
+Authorization: Bearer 123
+
+### GET 1 book
+GET https://cse341-course-mgmt.onrender.com/books/64109aafca5f253b4f9fe1c2
+### POST - create book (good schema)
+POST https://cse341-course-mgmt.onrender.com/books HTTP/1.1
+content-type: application/json
+
+{
+  "title": "A Knight's Tale",
+  "author": "Heath Ledger",
+  "pages": "95",
+  "genre": "Historical Fiction",
+  "publishYear": "1998"
+}
+### PUT - update book
+PUT https://cse341-course-mgmt.onrender.com/books/64109aafca5f253b4f9fe1c2 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "A Knight's Tale",
+  "author": "Alan Tudyk",
+  "pages": "95",
+  "genre": "Historical Fiction",
+  "publishYear": "1998"
+}
+### DELETE book
+DELETE https://cse341-course-mgmt.onrender.com/books/64109aafca5f253b4f9fe1c2 HTTP/1.1
+
+### --------- courses ----------
+
+### GET all courses with auth
+GET https://cse341-course-mgmt.onrender.com/courses
+Authorization: Bearer
+
+### GET all courses with (BAD) auth
+GET https://cse341-course-mgmt.onrender.com/courses
+Authorization: Bearer 123
+
+### GET 1 course
+GET https://cse341-course-mgmt.onrender.com/courses/64109aafca5f253b4f9fe1c2
+### POST - create course (good schema)
+POST https://cse341-course-mgmt.onrender.com/courses HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Introduction to Node JS",
+  "subject": "Web Development",
+  "code": "CSE 341",
+  "section": "001",
+  "description": "Introduction to backend development with Node JS.",
+  "faculty": "John T Booker",
+  "creditHours": 3,
+  "books": "Intro to Backend Dev" 
+}
+### PUT - update course
+PUT https://cse341-course-mgmt.onrender.com/courses/64109aafca5f253b4f9fe1c2 HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Introduction to Node JS",
+  "subject": "Web Development",
+  "code": "CSE 341",
+  "section": "001",
+  "description": "Introduction to backend development (creating a server) with Node JS and Express.",
+  "faculty": "Kevin Alabaster",
+  "creditHours": 3,
+  "books": "Intro to Backend Dev" 
+}
+### DELETE course
+DELETE https://cse341-course-mgmt.onrender.com/courses/64109aafca5f253b4f9fe1c2 HTTP/1.1

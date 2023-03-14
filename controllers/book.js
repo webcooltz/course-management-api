@@ -32,10 +32,10 @@ const createBook = async (req, res) => {
     return;
   }
   const book = new Book ({
-    title: req.body.firstName,
-    author: req.body.lastName,
-    pages: req.body.bio,
-    genre: req.body.email,
+    title: req.body.title,
+    author: req.body.author,
+    pages: req.body.pages,
+    genre: req.body.genre,
     publishYear: req.body.publishYear
   });
   const response = await mongodb.getDb().db().collection('books').insertOne(book);
@@ -59,10 +59,10 @@ const createBook = async (req, res) => {
     }
     const bookId = new ObjectId(req.params.id);
     const book = new Book ({
-      title: req.body.firstName,
-      author: req.body.lastName,
-      pages: req.body.bio,
-      genre: req.body.email,
+      title: req.body.title,
+      author: req.body.author,
+      pages: req.body.pages,
+      genre: req.body.genre,
       publishYear: req.body.publishYear
     });
     const response = await mongodb
