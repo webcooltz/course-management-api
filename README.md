@@ -18,3 +18,8 @@ A course management system for our CSE 341 BYUI class.
 * test locally to make sure it works
 * commit and push
 * the pipeline to Render will run on its own. if it has issues, contact Tyler
+
+## Testing
+
+* run <code>npm test</code>
+* It pulls tests from the spec folder
