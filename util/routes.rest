@@ -29,7 +29,7 @@ GET http://localhost:3000/students
 Authorization: Bearer 123
 
 ### GET 1 student
-GET http://localhost:3000/students/64079a2f810614d41e5a2188
+GET http://localhost:3000/students/6410e77ca3eb43c2b716afee
 
 ### POST - create student (good schema)
 POST http://localhost:3000/students HTTP/1.1
@@ -42,7 +42,7 @@ content-type: application/json
   "creditHours": 61
 }
 ### PUT - update student
-PUT http://localhost:3000/students/64079cd4e8c284e8b676704f HTTP/1.1
+PUT http://localhost:3000/students/64079a2f810614d41e5a2191 HTTP/1.1
 content-type: application/json
 
 {
@@ -52,7 +52,7 @@ content-type: application/json
   "creditHours": 61
 }
 ### DELETE student
-DELETE http://localhost:3000/students/64079cd4e8c284e8b676704f HTTP/1.1
+DELETE http://localhost:3000/students/6410e9a94cbc39af21d12258 HTTP/1.1
 
 ### --------- faculty ----------
 

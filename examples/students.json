@@ -1,63 +1,51 @@
-[
-    {
-      "firstName": "Avery",
-      "lastName": "Baker",
-      "email": "avery.baker@example.edu",
-      "creditHours": 61
-    },
-    {
-      "firstName": "Peyton",
-      "lastName": "Campbell",
-      "email": "peyton.campbell@example.edu",
-      "creditHours": 25
-    },
-    {
-      "firstName": "Bailey",
-      "lastName": "Clark",
-      "email": "bailey.clark@example.edu",
-      "creditHours": 87
-    },
-    {
-      "firstName": "Taylor",
-      "lastName": "Cooper",
-      "email": "taylor.cooper@example.edu",
-      "creditHours": 93
-    },
-    {
-      "firstName": "Riley",
-      "lastName": "Cox",
-      "email": "riley.cox@example.edu",
-      "creditHours": 109
-    },
-    {
-      "firstName": "Evelyn",
-      "lastName": "Garcia",
-      "email": "evelyn.garcia@example.edu",
-      "creditHours": 11
-    },
-    {
-      "firstName": "Noah",
-      "lastName": "Gonzalez",
-      "email": "noah.gonzalez@example.edu",
-      "creditHours": 29
-    },
-    {
-      "firstName": "Madison",
-      "lastName": "Hall",
-      "email": "madison.hall@example.edu",
-      "creditHours": 132
-    },
-    {
-      "firstName": "Mason",
-      "lastName": "Jackson",
-      "email": "mason.jackson@example.edu",
-      "creditHours": 114
-    },
-    {
-      "firstName": "Abigail",
-      "lastName": "Jones",
-      "email": "abigail.jones@example.edu",
-      "creditHours": 75
-    }
-  ]
-  
+[{
+  "firstName": "Avery",
+  "lastName": "Baker",
+  "email": "avery.baker@example.edu",
+  "creditHours": 61
+},{
+  "firstName": "Peyton",
+  "lastName": "Campbell",
+  "email": "peyton.campbell@example.edu",
+  "creditHours": 25
+},{
+  "firstName": "Bailey",
+  "lastName": "Clark",
+  "email": "bailey.clark@example.edu",
+  "creditHours": 87
+},{
+  "firstName": "Taylor",
+  "lastName": "Cooper",
+  "email": "taylor.cooper@example.edu",
+  "creditHours": 93
+},{
+  "firstName": "Riley",
+  "lastName": "Cox",
+  "email": "riley.cox@example.edu",
+  "creditHours": 109
+},{
+  "firstName": "Evelyn",
+  "lastName": "Garcia",
+  "email": "evelyn.garcia@example.edu",
+  "creditHours": 11
+},{
+  "firstName": "Noah",
+  "lastName": "Gonzalez",
+  "email": "noah.gonzalez@example.edu",
+  "creditHours": 29
+},{
+  "firstName": "Madison",
+  "lastName": "Hall",
+  "email": "madison.hall@example.edu",
+  "creditHours": 132
+},{
+  "firstName": "Mason",
+  "lastName": "Jackson",
+  "email": "mason.jackson@example.edu",
+  "creditHours": 114
+},{
+  "firstName": "Abigail",
+  "lastName": "Jones",
+  "email": "abigail.jones@example.edu",
+  "creditHours": 75
+}]

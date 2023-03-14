@@ -38,11 +38,7 @@ const createStudent = async (req, res) => {
     email: req.body.email,
     creditHours: req.body.creditHours
   });
-  const schemaResponse = schemaValidator.validate(student);
-  if (schemaResponse.error) {
-    res.status(400).send({ message: schemaResponse.error.details[0].message });
-    return;
-  }
+
   const response = await mongodb.getDb().db().collection('students').insertOne(student);
   if (response.acknowledged) {
     res.status(201).json({
@@ -69,11 +65,7 @@ const createStudent = async (req, res) => {
       email: req.body.email,
       creditHours: req.body.creditHours
     });
-    const schemaResponse = schemaValidator.validate(student);
-    if (schemaResponse.error) {
-      res.status(400).send({ message: schemaResponse.error.details[0].message });
-      return;
-    }
+
     const response = await mongodb
       .getDb()
       .db()
