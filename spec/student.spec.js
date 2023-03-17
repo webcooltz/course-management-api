@@ -36,7 +36,7 @@ describe('Student tests', () => {
         //     creditHours: 61
         // };
 
-        it('should create a new student', (done) => {
+        fit('should create a new student', (done) => {
             request(app)
                 .post('/students')
                 // this header is important to set
