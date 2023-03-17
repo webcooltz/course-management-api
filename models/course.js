@@ -10,6 +10,9 @@ const courseSchema = mongoose.Schema({
     faculty: { type: String, required: true },
     creditHours: { type: Number, required: true },
     books: { type: String, required: true }
+},
+{
+    collection: "courses"
 });
 
 module.exports = mongoose.model('Course', courseSchema);
