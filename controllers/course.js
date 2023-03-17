@@ -8,12 +8,10 @@ const getAll = async (req, res) => {
     // #swagger.tags = ['Course']
     // #swagger.summary = 'Get all courses'
     try {
-
-        // const result = await mongodb.getDb().db().collection('courses').find().toArray();
-
-        const result = await Course.find().exec();
-
+        // const result = await Course.find().exec();
+        const result = await mongodb.getDb().db().collection('courses').find().toArray();
         // console.log(result);
+
         if (result) {
             res.status(200).json(result);
         } else {
@@ -41,9 +39,9 @@ const getSingle = async (req, res) => {
             _id: new ObjectId(req.params.id),
         };
 
-        // const result = await mongodb.getDb().db().collection('courses').find(filter).toArray();
+        // const result = await Course.findOne(filter);
 
-        const result = await Course.findOne(filter);
+        const result = await mongodb.getDb().db().collection('courses').find(filter).toArray();
 
         if (result) {
             res.status(200).json(result);
@@ -67,11 +65,10 @@ const createCourse = async (req, res) => {
     // #swagger.summary = 'Create course'
     try {
         // const Course = req.body;
-
-        const course = new Course ({
+        const course = new Course({
             name: req.body.name,
             subject: req.body.subject,
-            code: req.body.code,
+            code: req.code.body,
             section: req.body.section,
             description: req.body.description,
             faculty: req.body.faculty,
@@ -79,11 +76,12 @@ const createCourse = async (req, res) => {
             books: req.body.books,
         });
 
-        // const result = await mongodb.getDb().db().collection('courses').insertOne(course);
+        // const result = await Course.save();
 
-        const result = await course.save();
+        const result = await mongodb.getDb().db().collection('courses').insertOne(course);
 
         // console.log(result);
+
         if (result) {
             res.status(201).json(result._id);
         } else {
@@ -119,7 +117,7 @@ const updateCourse = async (req, res) => {
         const course = {
             name: req.body.name,
             subject: req.body.subject,
-            code: req.body.code,
+            code: req.code.body,
             section: req.body.section,
             description: req.body.description,
             faculty: req.body.faculty,
@@ -127,13 +125,14 @@ const updateCourse = async (req, res) => {
             books: req.body.books,
         };
 
-        // const result = await mongodb.getDb().db().collection('courses').replaceOne(filter, course);
+        // const result = await Course.findOneAndUpdate(
+        //     filter,
+        //     // { runValidators: true },
+        //     { $set: course },
+        //     { new: true }
+        // ).exec();
 
-        const result = await Course.findOneAndUpdate(
-            filter,
-            { $set: course },
-            { new: true }
-        ).exec();
+        const result = await mongodb.getDb().db().collection('courses').replaceOne(filter, course);
 
         // console.log(result);
         if (result) {
@@ -167,9 +166,9 @@ const deleteCourse = async (req, res) => {
             _id: new ObjectId(req.params.id),
         };
 
-        // const result = await mongodb.getDb().db().collection('courses').removeOne(filter);
+        // const result = await Course.deleteOne(filter);
 
-        const result = await Course.deleteOne(filter);
+        const result = await mongodb.getDb().db().collection('courses').removeOne(filter);
 
         if (result.deletedCount > 0) {
             res.status(200).send();
