@@ -52,7 +52,7 @@ content-type: application/json
   "creditHours": 61
 }
 ### DELETE student
-DELETE http://localhost:3000/students/6410e9a94cbc39af21d12258 HTTP/1.1
+DELETE http://localhost:3000/students/6410e77ca3eb43c2b716afef HTTP/1.1
 
 ### --------- faculty ----------
 
