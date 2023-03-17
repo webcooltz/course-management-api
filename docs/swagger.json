@@ -443,16 +443,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": {
+                  "title": {
                     "example": "any"
                   },
-                  "lastName": {
+                  "author": {
                     "example": "any"
                   },
-                  "bio": {
+                  "pages": {
                     "example": "any"
                   },
-                  "email": {
+                  "genre": {
+                    "example": "any"
+                  },
+                  "publishYear": {
                     "example": "any"
                   }
                 }
@@ -521,16 +524,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "firstName": {
+                  "title": {
                     "example": "any"
                   },
-                  "lastName": {
+                  "author": {
                     "example": "any"
                   },
-                  "bio": {
+                  "pages": {
                     "example": "any"
                   },
-                  "email": {
+                  "genre": {
+                    "example": "any"
+                  },
+                  "publishYear": {
                     "example": "any"
                   }
                 }
