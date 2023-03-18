@@ -6,8 +6,34 @@ const mongodb = require('./db/connect');
 
 const app = express();
 
+
+const { auth, requiresAuth } = require("express-openid-connect");
+const cors = require("cors");
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASE_URL,
+  clientID: process.env.CLIENT_ID,
+  issuerBaseURL: process.env.ISSUER_BASE_URL,
+};
+
+app.use(auth(config));
+
+app.get("/", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+});
+
+app.get("/profile", requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
+
+
+
+
 app
   .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
   .use(logger('dev'))
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,7 +47,15 @@ app
     );
     next();
   })
+  .use(cors())
   .use('/', require('./routes'));
+
+process.on("uncaughtException", (err, origin) => {
+  console.log(
+    process.stderr.fd,
+    `Caught exception: ${err}\n` + `Exception origin ${origin}`
+  );
+});
 
 mongodb.initDb((err) => {
   if (err) {
