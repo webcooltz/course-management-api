@@ -7,7 +7,10 @@ const Student = require('../models/student');
 const getAll = async (req, res) => {
   // #swagger.tags = ['Student']
   // #swagger.summary = 'Get all students'
-  const result = await mongodb.getDb().db().collection('students').find();
+  // const result = await mongodb.getDb().db().collection('students').find();
+
+  const result = await Student.find().exec();
+  
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -18,7 +21,10 @@ const getSingle = async (req, res) => {
   // #swagger.tags = ['Student']
   // #swagger.summary = 'Get student by id'
   const studentId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('students').find({ _id: studentId });
+  // const result = await mongodb.getDb().db().collection('students').find({ _id: studentId });
+
+  const result = await Faculty.findOne({ _id: studentId });
+
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);

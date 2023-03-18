@@ -7,6 +7,9 @@ const bookSchema = mongoose.Schema({
     pages: {type: String, required: true},
     genre: {type: String, required: true},
     publishYear: {type: String, required: true},
+},
+{
+    collection: "books"
 });
 
 module.exports = mongoose.model('Book', bookSchema);

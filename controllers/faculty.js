@@ -6,7 +6,11 @@ const Faculty = require('../models/faculty');
 const getAll = async (req, res) => {
   // #swagger.tags = ['Faculty']
   // #swagger.summary = 'Get all faculty'
-  const result = await mongodb.getDb().db().collection('faculty').find();
+
+  // const result = await mongodb.getDb().db().collection('faculty').find();
+
+  const result = await Faculty.find().exec();
+
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -17,7 +21,10 @@ const getSingle = async (req, res) => {
   // #swagger.tags = ['Faculty']
   // #swagger.summary = 'Get faculty by id'
   const facultyId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('faculty').find({ _id: facultyId });
+  // const result = await mongodb.getDb().db().collection('faculty').find({ _id: facultyId });
+
+  const result = await Faculty.findOne({ _id: facultyId });
+  
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
