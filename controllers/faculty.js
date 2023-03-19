@@ -11,10 +11,10 @@ const getAll = async (req, res) => {
 
   const result = await Faculty.find().exec();
 
-  result.toArray().then((lists) => {
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const getSingle = async (req, res) => {
@@ -25,10 +25,10 @@ const getSingle = async (req, res) => {
 
   const result = await Faculty.findOne({ _id: facultyId });
   
-  result.toArray().then((lists) => {
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const createFaculty = async (req, res) => {

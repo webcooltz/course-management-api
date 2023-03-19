@@ -11,10 +11,10 @@ const getAll = async (req, res) => {
 
   const result = await Student.find().exec();
   
-  result.toArray().then((lists) => {
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const getSingle = async (req, res) => {
@@ -23,12 +23,12 @@ const getSingle = async (req, res) => {
   const studentId = new ObjectId(req.params.id);
   // const result = await mongodb.getDb().db().collection('students').find({ _id: studentId });
 
-  const result = await Faculty.findOne({ _id: studentId });
+  const result = await Student.findOne({ _id: studentId });
 
-  result.toArray().then((lists) => {
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const createStudent = async (req, res) => {

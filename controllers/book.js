@@ -11,10 +11,10 @@ const getAll = async (req, res) => {
 
   const result = await Book.find().exec();
 
-  result.toArray().then((lists) => {
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const getSingle = async (req, res) => {
@@ -26,10 +26,10 @@ const getSingle = async (req, res) => {
 
   const result = await Book.findOne({ _id: bookId });
 
-  result.toArray().then((lists) => {
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const createBook = async (req, res) => {
