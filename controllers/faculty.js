@@ -44,8 +44,12 @@ const createFaculty = async (req, res) => {
     bio: req.body.bio,
     email: req.body.email
   });
-  const response = await mongodb.getDb().db().collection('faculty').insertOne(faculty);
-  if (response.acknowledged) {
+
+  // const response = await mongodb.getDb().db().collection('faculty').insertOne(faculty);
+
+  const response = await book.save();
+
+  if (response) {
     res.status(201).json({
       response: response,
       message: "Created new Faculty successfully.",
@@ -91,7 +95,10 @@ const createFaculty = async (req, res) => {
     // #swagger.tags = ['Faculty']
       // #swagger.summary = 'Delete faculty by id'
     const facultyId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('faculty').deleteOne({ _id: facultyId }, true);
+    // const response = await mongodb.getDb().db().collection('faculty').deleteOne({ _id: facultyId }, true);
+
+    const response = await Faculty.deleteOne({ _id: facultyId});
+
     console.log(response);
     if (response.deletedCount > 0) {
       res.status(200).json({

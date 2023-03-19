@@ -47,9 +47,11 @@ const createBook = async (req, res) => {
     publishYear: req.body.publishYear
   });
 
-  const response = await mongodb.getDb().db().collection('books').insertOne(book);
+  // const response = await mongodb.getDb().db().collection('books').insertOne(book);
 
-  if (response.acknowledged) {
+  const response = await book.save();
+
+  if (response) {
     res.status(201).json({
       response: response,
       message: "Created new Book successfully.",
@@ -67,7 +69,8 @@ const createBook = async (req, res) => {
       res.status(400).send({ message: "Request body cannot be empty" });
       return;
     }
-    const bookId = new ObjectId(req.params.id);
+    // const bookId = new ObjectId(req.params.id);
+    const filter = { _id: new ObjectId(req.params.id)};
     const book = new Book ({
       title: req.body.title,
       author: req.body.author,
@@ -75,13 +78,20 @@ const createBook = async (req, res) => {
       genre: req.body.genre,
       publishYear: req.body.publishYear
     });
-    const response = await mongodb
-      .getDb()
-      .db()
-      .collection('books')
-      .replaceOne({ _id: bookId }, { book });
+    // const response = await mongodb
+    //   .getDb()
+    //   .db()
+    //   .collection('books')
+    //   .replaceOne({ _id: bookId }, { book });
+
+      const response = await Book.findOneAndUpdate(
+        filter,
+        { $set: book },
+        { new: true }
+    ).exec();
+
     console.log(response);
-    if (response.modifiedCount > 0) {
+    if (response) {
       res.status(204).json({
         response: response,
         message: "Updated book successfully.",
@@ -96,7 +106,10 @@ const createBook = async (req, res) => {
     // #swagger.tags = ['Book']
     // #swagger.summary = 'Delete book by id'
     const bookId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('books').deleteOne({ _id: bookId }, true);
+    // const response = await mongodb.getDb().db().collection('books').deleteOne({ _id: bookId }, true);
+
+    const response = await Book.deleteOne({ _id: bookId});
+
     console.log(response);
     if (response.deletedCount > 0) {
       res.status(200).json({

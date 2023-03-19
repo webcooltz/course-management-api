@@ -45,8 +45,11 @@ const createStudent = async (req, res) => {
     creditHours: req.body.creditHours
   });
 
-  const response = await mongodb.getDb().db().collection('students').insertOne(student);
-  if (response.acknowledged) {
+  // const response = await mongodb.getDb().db().collection('students').insertOne(student);
+
+  const response = await book.save();
+
+  if (response) {
     res.status(201).json({
       response: response,
       message: "Created new Student successfully.",
@@ -93,7 +96,10 @@ const createStudent = async (req, res) => {
     // #swagger.tags = ['Student']
     // #swagger.summary = 'Delete student by id'
     const studentId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('students').deleteOne({ _id: studentId }, true);
+    // const response = await mongodb.getDb().db().collection('students').deleteOne({ _id: studentId }, true);
+
+    const response = await Student.deleteOne({ _id: studentId});
+
     console.log(response);
     if (response.deletedCount > 0) {
       res.status(200).json({
