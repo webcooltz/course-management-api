@@ -8,7 +8,7 @@ const studentSchema = mongoose.Schema({
     creditHours: { type: Number, required: true }
 },
 {
-    collection: "student"
+    collection: "students"
 });
 
 module.exports = mongoose.model('Student', studentSchema);
