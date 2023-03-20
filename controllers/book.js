@@ -69,28 +69,27 @@ const createBook = async (req, res) => {
       res.status(400).send({ message: "Request body cannot be empty" });
       return;
     }
-    // const bookId = new ObjectId(req.params.id);
-    const filter = { _id: new ObjectId(req.params.id)};
-    const book = new Book ({
+    const bookId = new ObjectId(req.params.id);
+    const book = {
       title: req.body.title,
       author: req.body.author,
       pages: req.body.pages,
       genre: req.body.genre,
       publishYear: req.body.publishYear
-    });
+    };
     // const response = await mongodb
     //   .getDb()
     //   .db()
     //   .collection('books')
     //   .replaceOne({ _id: bookId }, { book });
 
-      const response = await Book.findOneAndUpdate(
-        filter,
+    const response = await Book.findOneAndUpdate(
+        { _id: bookId},
         { $set: book },
         { new: true }
     ).exec();
 
-    console.log(response);
+    // console.log(response);
     if (response) {
       res.status(204).json({
         response: response,

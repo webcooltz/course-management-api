@@ -47,7 +47,7 @@ const createFaculty = async (req, res) => {
 
   // const response = await mongodb.getDb().db().collection('faculty').insertOne(faculty);
 
-  const response = await book.save();
+  const response = await faculty.save();
 
   if (response) {
     res.status(201).json({
@@ -68,18 +68,26 @@ const createFaculty = async (req, res) => {
       return;
     }
     const facultyId = new ObjectId(req.params.id);
-    const faculty = new Faculty ({
+    const faculty = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       bio: req.body.bio,
       email: req.body.email
-    });
-    const response = await mongodb
-      .getDb()
-      .db()
-      .collection('faculty')
-      .replaceOne({ _id: facultyId }, { faculty });
-    console.log(response);
+    };
+    // const response = await mongodb
+    //   .getDb()
+    //   .db()
+    //   .collection('faculty')
+    //   .replaceOne({ _id: facultyId }, { faculty });
+
+    const response = await Faculty.findOneAndUpdate(
+      { _id: facultyId},
+      { $set: faculty },
+      { new: true }
+  ).exec();
+
+
+    // console.log(response);
     if (response.modifiedCount > 0) {
       res.status(204).json({
         response: response,

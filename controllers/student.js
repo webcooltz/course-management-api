@@ -47,7 +47,7 @@ const createStudent = async (req, res) => {
 
   // const response = await mongodb.getDb().db().collection('students').insertOne(student);
 
-  const response = await book.save();
+  const response = await student.save();
 
   if (response) {
     res.status(201).json({
@@ -68,19 +68,27 @@ const createStudent = async (req, res) => {
       return;
     }
     const studentId = new ObjectId(req.params.id);
-    const student = new Student({
+    const student = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       creditHours: req.body.creditHours
-    });
+    };
 
-    const response = await mongodb
-      .getDb()
-      .db()
-      .collection('students')
-      .replaceOne({ _id: studentId }, { student });
-    console.log(response);
+    // const response = await mongodb
+    //   .getDb()
+    //   .db()
+    //   .collection('students')
+    //   .replaceOne({ _id: studentId }, { student });
+
+    const response = await Student.findOneAndUpdate(
+      { _id: studentId},
+      { $set: student },
+      { new: true }
+  ).exec();
+
+
+    // console.log(response);
     if (response.modifiedCount > 0) {
       res.status(204).json({
         response: response,
