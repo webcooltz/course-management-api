@@ -7,22 +7,28 @@ const Student = require('../models/student');
 const getAll = async (req, res) => {
   // #swagger.tags = ['Student']
   // #swagger.summary = 'Get all students'
-  const result = await mongodb.getDb().db().collection('students').find();
-  result.toArray().then((lists) => {
+  // const result = await mongodb.getDb().db().collection('students').find();
+
+  const result = await Student.find().exec();
+  
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const getSingle = async (req, res) => {
   // #swagger.tags = ['Student']
   // #swagger.summary = 'Get student by id'
   const studentId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('students').find({ _id: studentId });
-  result.toArray().then((lists) => {
+  // const result = await mongodb.getDb().db().collection('students').find({ _id: studentId });
+
+  const result = await Student.findOne({ _id: studentId });
+
+  // result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });
+    res.status(200).json(result);
+  // });
 };
 
 const createStudent = async (req, res) => {
@@ -39,8 +45,11 @@ const createStudent = async (req, res) => {
     creditHours: req.body.creditHours
   });
 
-  const response = await mongodb.getDb().db().collection('students').insertOne(student);
-  if (response.acknowledged) {
+  // const response = await mongodb.getDb().db().collection('students').insertOne(student);
+
+  const response = await student.save();
+
+  if (response) {
     res.status(201).json({
       response: response,
       message: "Created new Student successfully.",
@@ -59,19 +68,27 @@ const createStudent = async (req, res) => {
       return;
     }
     const studentId = new ObjectId(req.params.id);
-    const student = new Student({
+    const student = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       creditHours: req.body.creditHours
-    });
+    };
 
-    const response = await mongodb
-      .getDb()
-      .db()
-      .collection('students')
-      .replaceOne({ _id: studentId }, { student });
-    console.log(response);
+    // const response = await mongodb
+    //   .getDb()
+    //   .db()
+    //   .collection('students')
+    //   .replaceOne({ _id: studentId }, { student });
+
+    const response = await Student.findOneAndUpdate(
+      { _id: studentId},
+      { $set: student },
+      { new: true }
+  ).exec();
+
+
+    // console.log(response);
     if (response.modifiedCount > 0) {
       res.status(204).json({
         response: response,
@@ -87,7 +104,10 @@ const createStudent = async (req, res) => {
     // #swagger.tags = ['Student']
     // #swagger.summary = 'Delete student by id'
     const studentId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('students').deleteOne({ _id: studentId }, true);
+    // const response = await mongodb.getDb().db().collection('students').deleteOne({ _id: studentId }, true);
+
+    const response = await Student.deleteOne({ _id: studentId});
+
     console.log(response);
     if (response.deletedCount > 0) {
       res.status(200).json({

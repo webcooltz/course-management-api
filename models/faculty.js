@@ -6,6 +6,9 @@ const facultySchema = mongoose.Schema({
     lastName: { type: String, required: true },
     bio: {type: String, required: true},
     email: { type: String, required: true }
+},
+{
+    collection: "faculty"
 });
 
 module.exports = mongoose.model('Faculty', facultySchema);
