@@ -29,7 +29,7 @@ GET http://localhost:3000/students
 Authorization: Bearer 123
 
 ### GET 1 student
-GET http://localhost:3000/students/6410e77ca3eb43c2b716afee
+GET http://localhost:3000/students/64079a2f810614d41e5a2188
 
 ### POST - create student (good schema)
 POST http://localhost:3000/students HTTP/1.1
