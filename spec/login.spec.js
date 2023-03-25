@@ -1,31 +1,42 @@
-const OAuth2Server = require('oauth2-mock-server');
-const oauthServer = new OAuth2Server({ /* configuration */ });
-const dotenv = require("dotenv");
-dotenv.config();
+const { checkLoggedIn } = require('../middleware/authorize');
 
-describe('OAuth2 authentication', () => {
-  beforeAll(async () => {
-    // Start the mock server
-    await oauthServer.start();
+describe('checkLoggedIn middleware', () => {
+  let req, res, next;
+
+  beforeEach(() => {
+    req = {
+      oidc: {
+        isAuthenticated: jasmine.createSpy().and.returnValue(true),
+      },
+    };
+    res = {
+        status: (statusCode) => ({
+          send: (data) => {
+            res.statusCode = statusCode;
+            res.data = data;
+            return res;
+          },
+        }),
+      };          
+    next = jasmine.createSpy('next');
   });
 
-  afterAll(async () => {
-    // Stop the mock server
-    await oauthServer.stop();
+  it('should call next when user is authenticated', () => {
+    checkLoggedIn(req, res, next);
+
+    expect(req.oidc.isAuthenticated).toHaveBeenCalled();
+    expect(next).toHaveBeenCalled();
   });
 
-  it('should authenticate with OAuth2', async () => {
-    // Make a request to the mock server to authenticate
-    const response = await request(oauthServer.url)
-      .post('/oauth2/token')
-      .send({
-        grant_type: process.env.BASE_URL,
-        client_id: process.env.CLIENT_ID,
-        client_secret: process.env.SECRET
-      });
-    
-    // Assert that the response is successful
-    expect(response.status).toBe(200);
-    expect(response.body.access_token).toBeDefined();
+  it('should return an error when user is not authenticated', () => {
+    req.oidc.isAuthenticated = jasmine.createSpy().and.returnValue(false);
+
+    const result = checkLoggedIn(req, res, next);
+
+    expect(req.oidc.isAuthenticated).toHaveBeenCalled();
+    expect(next).not.toHaveBeenCalled();
+    expect(result.statusCode).toBe(401);
+    expect(result.data.error).toBe('Not authorized to change data without login.');
+    expect(result.data.login).toBe('https://cse341-course-mgmt.onrender.com/login');
   });
 });

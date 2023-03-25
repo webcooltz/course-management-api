@@ -33,7 +33,6 @@
     "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
-    "oauth2-mock-server": "^5.0.2",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",

@@ -2,7 +2,6 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 const Student = require('../models/student');
-// const schemaValidator = require('../util/studentValidation');
 
 const getAll = async (req, res) => {
   // #swagger.tags = ['Student']
