@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const studentController = require('../controllers/student');
+// const isAuth = require("../util/authToken");
 const OAuth = require("../middleware/authorize");
 
 router.get('/', studentController.getAll);
