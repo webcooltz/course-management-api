@@ -1,30 +1,31 @@
-const passport = require('passport');
-const OAuth2Strategy = require('passport-oauth2-mock').Strategy;
+const OAuth2Server = require('oauth2-mock-server');
+const oauthServer = new OAuth2Server({ /* configuration */ });
 const dotenv = require("dotenv");
 dotenv.config();
 
-// Configure the mock OAuth provider
-passport.use(new OAuth2Strategy({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.SECRET,
-  callbackURL: 'http://localhost:3000/auth/callback'
-}, (accessToken, refreshToken, profile, done) => {
-  // Define the expected responses from the OAuth provider
-  const user = { id: 'testuser', name: 'Test User' };
-  done(null, user);
-}));
+describe('OAuth2 authentication', () => {
+  beforeAll(async () => {
+    // Start the mock server
+    await oauthServer.start();
+  });
 
-fdescribe('OAuth authentication', () => {
-  it('should authenticate successfully with mock OAuth provider', (done) => {
-    // Simulate the authentication process with the mock OAuth provider
-    const req = { query: { code: 'testcode' } };
-    const res = {};
-    passport.authenticate('oauth2-mock', { session: false })(req, res, () => {
-      // Test that the user is authenticated correctly
-      expect(req.user).toBeDefined();
-      expect(req.user.id).toBe('testuser');
-      expect(req.user.name).toBe('Test User');
-      done();
-    });
+  afterAll(async () => {
+    // Stop the mock server
+    await oauthServer.stop();
+  });
+
+  it('should authenticate with OAuth2', async () => {
+    // Make a request to the mock server to authenticate
+    const response = await request(oauthServer.url)
+      .post('/oauth2/token')
+      .send({
+        grant_type: process.env.BASE_URL,
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.SECRET
+      });
+    
+    // Assert that the response is successful
+    expect(response.status).toBe(200);
+    expect(response.body.access_token).toBeDefined();
   });
 });
