@@ -61,8 +61,8 @@ GET http://localhost:3000/faculty
 Authorization: Bearer
 
 ### GET all faculty with (BAD) auth
-GET http://localhost:3000/faculty
-Authorization: Bearer 123
+# GET http://localhost:3000/faculty
+# Authorization: Bearer 123
 
 ### GET 1 faculty
 GET http://localhost:3000/faculty/640ae891c1f2d58533956f2a
@@ -131,11 +131,11 @@ DELETE http://localhost:3000/books/64109aafca5f253b4f9fe1c2 HTTP/1.1
 
 ### GET all courses with auth
 GET http://localhost:3000/courses
-Authorization: Bearer
+# Authorization: Bearer
 
 ### GET all courses with (BAD) auth
-GET http://localhost:3000/courses
-Authorization: Bearer 123
+# GET http://localhost:3000/courses
+# Authorization: Bearer 123
 
 ### GET 1 course
 GET http://localhost:3000/courses/64109aafca5f253b4f9fe1c2

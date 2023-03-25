@@ -1,5 +1,4 @@
 // student controller
-// const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 const Student = require('../models/student');
 
@@ -19,14 +18,13 @@ const getSingle = async (req, res) => {
   // #swagger.tags = ['Student']
   // #swagger.summary = 'Get student by id'
   const studentId = new ObjectId(req.params.id);
-  // const result = await mongodb.getDb().db().collection('students').find({ _id: studentId });
-
-  const result = await Student.findOne({ _id: studentId });
-
-  // result.toArray().then((lists) => {
+  const student = await Student.findOne({ _id: studentId });
+  if (student) {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result);
-  // });
+    res.status(200).json(student);
+  } else {
+    res.status(500).json({ error: 'Unable to retrieve student' });
+  }
 };
 
 const createStudent = async (req, res) => {
@@ -46,6 +44,8 @@ const createStudent = async (req, res) => {
   // const response = await mongodb.getDb().db().collection('students').insertOne(student);
 
   const response = await student.save();
+
+  console.log("res (controller): ", res);
 
   if (response) {
     res.status(201).json({
