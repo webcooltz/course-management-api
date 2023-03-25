@@ -22,11 +22,11 @@ Content-Type: application/json
 
 ### GET all students with auth
 GET http://localhost:3000/students
-Authorization: Bearer
+# Authorization: Bearer
 
-### GET all students with (BAD) auth
-GET http://localhost:3000/students
-Authorization: Bearer 123
+# ### GET all students with (BAD) auth
+# GET http://localhost:3000/students
+# Authorization: Bearer 123
 
 ### GET 1 student
 GET http://localhost:3000/students/64079a2f810614d41e5a2188

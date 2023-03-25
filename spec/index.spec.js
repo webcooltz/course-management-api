@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../index');
 
-describe('Index Tests', () => {
+describe('GET /', () => {
   it('responds with status 200', (done) => {
     request(app)
       .get('/')
@@ -12,11 +12,10 @@ describe('Index Tests', () => {
       });
   });
 
-  it('responds with "welcome :)"', (done) => {
+  it('responds with "Logged out"', (done) => {
     request(app)
       .get('/')
-      .expect(200)
-      .expect('welcome :)')
+      .expect('Logged out')
       .end((err, res) => {
         if (err) return done.fail(err);
         done();

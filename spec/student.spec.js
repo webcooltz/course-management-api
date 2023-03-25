@@ -3,7 +3,6 @@
 // const mongodb = require('../db/connect');
 // const port = process.env.PORT || 3000;
 
-// // the test suite to run
 // describe('Student tests', () => {
 //     let mockStudent = {
 //         firstName: "Johnny",
@@ -12,7 +11,6 @@
 //         creditHours: 61
 //     };
 //     let newStudentId;
-//     // what happens before all of the tests run
 //     beforeAll(async () => {
 //         // waits for the DB connection to run the tests
 //         await new Promise((resolve, reject) => {
@@ -26,9 +24,24 @@
 //             }
 //           });
 //         });
+
+//         req = {
+//             oidc: {
+//               isAuthenticated: jasmine.createSpy().and.returnValue(true),
+//             },
+//           };
+//           res = {
+//               status: (statusCode) => ({
+//                 send: (data) => {
+//                   res.statusCode = statusCode;
+//                   res.data = data;
+//                   return res;
+//                 },
+//               }),
+//             };          
+//           next = jasmine.createSpy('next');
 //     });
 
-//     describe('POST requests', () => {
 //         // const newStudent = {
 //         //     firstName: "Johnny",
 //         //     lastName: "Baker",
@@ -36,7 +49,7 @@
 //         //     creditHours: 61
 //         // };
 
-//         fit('should create a new student', (done) => {
+//          it('should create a new student', (done) => {
 //             request(app)
 //                 .post('/students')
 //                 // this header is important to set
@@ -58,10 +71,7 @@
 //                         }
 //                 });
 //         }, 10000);
-//     });
 
-//     // all GET request tests
-//     describe('GET requests', () => {
 //         // the ID to search
 //         let studentId;
 //         // if the ID isn't set by POST tests, use this default ID
@@ -104,10 +114,6 @@
 //             //     done();
 //             //     });
 //             // }, 10000);
-//         });
-
-//     describe('PUT requests', () => {
-//         let studentId = "";
         
 //         if (!newStudentId) {
 //             console.log("no newStudentId");
@@ -131,7 +137,7 @@
 //             creditHours: 61
 //         };
 
-//         fit('should alter this student: ', (done) => {
+//         it('should alter this student: ', (done) => {
 //             request(app)
 //                 .put("/students/" + studentId)
 //                 .set('Content-Type', 'application/json')
@@ -148,7 +154,7 @@
 //                 });
 //         }, 10000);
 
-//         fit('should return the altered student', (done) => {
+//         it('should return the altered student', (done) => {
 //             request(app)
 //                 .get('/students/' + studentId)
 //                 .expect(200)
@@ -158,7 +164,7 @@
 //                     done();
 //                 });
 //             }, 10000);
-//     });
+
 // });
 
 // // TO-DO:

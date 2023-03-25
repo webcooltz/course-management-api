@@ -1,20 +1,18 @@
 // student controller
-const mongodb = require('../db/connect');
+// const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 const Student = require('../models/student');
-// const schemaValidator = require('../util/studentValidation');
 
 const getAll = async (req, res) => {
   // #swagger.tags = ['Student']
   // #swagger.summary = 'Get all students'
-  // const result = await mongodb.getDb().db().collection('students').find();
-
-  const result = await Student.find().exec();
-  
-  // result.toArray().then((lists) => {
+  const students = await Student.find();
+  if (students) {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result);
-  // });
+    res.status(200).json(students);
+  } else {
+    res.status(500).json({ error: 'Unable to retrieve students' });
+  }
 };
 
 const getSingle = async (req, res) => {
