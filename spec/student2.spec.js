@@ -2,8 +2,29 @@ const request = require('supertest');
 const app = require('../index');
 const mongodb = require('../db/connect');
 const port = process.env.PORT || 3000;
+const { checkLoggedIn } = require('../middleware/authorize');
 
 describe('Student tests', () => {
+    function authorizeUser() {
+        req = {
+            oidc: {
+                isAuthenticated: jasmine.createSpy().and.returnValue(true),
+            },
+        };
+        res = {
+            status: (statusCode) => ({
+                send: (data) => {
+                    res.statusCode = statusCode;
+                    res.data = data;
+                    return res;
+                },
+            }),
+        };          
+        next = jasmine.createSpy('next');
+
+        checkLoggedIn(req, res, next);
+    }
+    let req, res, next;
     let mockStudent = {
         firstName: "Johnny",
         lastName: "Baker",
@@ -19,52 +40,53 @@ describe('Student tests', () => {
               console.log(err);
               reject(err);
             } else {
-              resolve();
-              console.log("Connected to DB and listening on ", port);
+                resolve();
+                console.log("Connected to DB and listening on ", port);
+                // authorizeUser();
             }
           });
         });
-
-        req = {
-            oidc: {
-              isAuthenticated: jasmine.createSpy().and.returnValue(true),
-            },
-          };
-          res = {
-            status: (statusCode) => ({
-            send: (data) => {
-                res.statusCode = statusCode;
-                res.data = data;
-                return res;
-            },
-            }),
-        };          
-        next = jasmine.createSpy('next');
-
-        checkLoggedIn(req, res, next);
     });
 
-        it('should create a new student', (done) => {
-            request(app)
-                .post('/students')
-                .set('Content-Type', 'application/json')
-                .send(JSON.stringify(mockStudent))
-                .end((error, response) => {
-                    if (error) {
-                        console.log(error);
-                        done.fail(error);
-                    } else {
-                        newStudentId = response.body.student._id;
+    // afterAll(async () => {
+    //     await mongodb.connection.close();
+    // });
 
-                        expect(response.statusCode).toBe(201);
-                        expect(response.body.student.firstName).toBe(mockStudent.firstName);
-                        expect(response.body.student.lastName).toBe(mockStudent.lastName);
-                        expect(response.body.student.email).toBe(mockStudent.email);
-                        expect(response.body.student.creditHours).toBe(mockStudent.creditHours);
-                        done();
-                    }
-                });
-        }, 10000);
+    fit('should get all students', async () => {
+        const response = await request(app).get('/students');
+  
+        expect(response.status).toBe(200);
+        expect(response.body).toBeDefined();
+        expect(response.body.length).toBeGreaterThan(0);
+    }, 10000);
+
+    it('should create a new student', (done) => {
+        authorizeUser();
+        request(app)
+            .post('/students')
+            .set('Content-Type', 'application/json')
+            .send(JSON.stringify(mockStudent))
+            .end((error, response) => {
+                if (error) {
+                    console.log(error);
+                    done.fail(error);
+                } else {
+                    console.log("response.body: ", response.body);
+                    newStudentId = response.body.student._id;
+
+                    expect(req.oidc.isAuthenticated).toHaveBeenCalled();
+                    expect(next).toHaveBeenCalled();
+                    expect(result.statusCode).toBe(201);
+
+                    // expect(response.statusCode).toBe(201);
+                    expect(response.body.student.firstName).toBe(mockStudent.firstName);
+                    expect(response.body.student.lastName).toBe(mockStudent.lastName);
+                    expect(response.body.student.email).toBe(mockStudent.email);
+                    expect(response.body.student.creditHours).toBe(mockStudent.creditHours);
+                    done();
+                }
+            });
+    }, 10000);
 
         // the ID to search
         let studentId;
@@ -97,17 +119,6 @@ describe('Student tests', () => {
                     done();
                 });
             }, 10000);
-
-            // GET all students
-            // it('get all students - responds with an array of student objects', (done) => {
-            // request(app)
-            //     .get('/students')
-            //     .expect(Array.isArray(response))
-            //     .end((err, res) => {
-            //     if (err) return done.fail(err);
-            //     done();
-            //     });
-            // }, 10000);
         
         if (!newStudentId) {
             console.log("no newStudentId");
