@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../index');
 
-fdescribe('GET /', () => {
+describe('GET /', () => {
   it('responds with status 200', (done) => {
     request(app)
       .get('/')

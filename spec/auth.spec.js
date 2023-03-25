@@ -1,6 +1,6 @@
 const { checkLoggedIn } = require('../middleware/authorize');
 
-describe('checkLoggedIn middleware', () => {
+describe('Checks if authorization works', () => {
   let req, res, next;
 
   beforeEach(() => {
