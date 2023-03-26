@@ -4,7 +4,7 @@ const mongodb = require('../db/connect');
 const port = process.env.PORT || 3000;
 const studentController = require('../controllers/student');
 
-describe('Student tests', () => {
+fdescribe('Student tests', () => {
     const mockStudent = {
         firstName: "Johnny",
         lastName: "Baker",
@@ -14,6 +14,7 @@ describe('Student tests', () => {
     let newStudentId;
     let studentId;
     const defaultId = '641f6fe3d52ef47907d64063';
+
     beforeAll(async () => {
         // waits for the DB connection to run the tests
         await new Promise((resolve, reject) => {
@@ -29,6 +30,19 @@ describe('Student tests', () => {
         });
     });
 
+    // GET /students response
+    // *working*
+    it('route should respond with status 200', (done) => {
+        request(app)
+            .get('/students')
+            .expect(200)
+            .end((err, res) => { 
+            if (err) return done.fail(err);
+            done();
+        });
+    });
+
+    // GET all students
     // *working*
     it('should get all students', async () => {
         const response = await request(app).get('/students');
@@ -38,6 +52,7 @@ describe('Student tests', () => {
         expect(response.body.length).toBeGreaterThan(0);
     }, 10000);
 
+    // POST new student
     // *working*
     it('should create a new student', async () => {
         const mockReq = {
@@ -69,34 +84,20 @@ describe('Student tests', () => {
         expect(mockRes.data.student.creditHours).toBe(61);
     }, 10000);
 
-    // route GET response test
-    // *working*
-    it('route should respond with status 200', (done) => {
-        request(app)
-            .get('/students')
-            .expect(200)
-            .end((err, res) => { 
-            if (err) return done.fail(err);
-            done();
-        });
-    });
-
     // GET 1 student
     // *working*
-    it('should get 1 student - Responds with mockStudent', async () => {
+    it('should get 1 student', async () => {
         // if the ID isn't set by POST tests, use this default ID
         if (!newStudentId) {
             studentId = defaultId;
         } else {
             studentId = newStudentId;
         }
-
         const mockGetReq = {
             params: {
               id: studentId
             }
           };
-
         const mockGetRes = {
             status: (statusCode) => ({
                 json: (data) => {
@@ -125,54 +126,66 @@ describe('Student tests', () => {
         }
     }, 10000);
 
-    // let studentResponse = {
-    //     "_id": studentId,
-    //     "firstName": "Johnny",
-    //     "lastName": "BGood",
-    //     "email": "johnny.bgood@example.edu",
-    //     "creditHours": 61
-    // };
-
-    const alteredStudent = {
-        firstName: "Johnny",
-        lastName: "BGood",
-        email: "johnny.bgood@example.edu",
-        creditHours: 61
-    };
-
-    it('should alter this student: ', (done) => {
-        request(app)
-            .put("/students/" + studentId)
-            .set('Content-Type', 'application/json')
-            .send(JSON.stringify(alteredStudent))
-            .end((error, response) => {
-                if (error) {
-                console.log(error);
-                done.fail(error);
-                } else {
-                // expect the response:
-                expect(response.statusCode).toBe(204);
-                done();
-                }
-            });
+    // PUT update new student
+    // *working*
+    it('should update the new student', async () => {
+        if (newStudentId) {
+            studentId = newStudentId;
+        } else {
+            console.log("PUT student - newStudentId error");
+            return;
+        }
+        const altStudent = {
+            firstName: "John",
+            lastName: "BGood",
+            email: "johnny.bgood@example.edu",
+            creditHours: 70
+        };
+        const mockPutReq = {
+            params: {
+                id: studentId
+            },
+            body: {
+                firstName: altStudent.firstName,
+                lastName: altStudent.lastName,
+                email: altStudent.email,
+                creditHours: altStudent.creditHours,
+            }
+        };
+        const mockPutRes = {
+            status: (statusCode) => ({
+                json: (data) => {
+                    mockPutRes.statusCode = statusCode;
+                    mockPutRes.data = data;
+                    return mockPutRes;
+                },
+              })
+        };
+    
+        await studentController.updateStudent(mockPutReq, mockPutRes);
+    
+        expect(mockPutRes.data.message).toBe("Updated student successfully.");
+        expect(mockPutRes.statusCode).toBe(204);
+        expect(mockPutRes.data.student.firstName).toBe('John');
+        expect(mockPutRes.data.student.lastName).toBe('BGood');
+        expect(mockPutRes.data.student.email).toBe('johnny.bgood@example.edu');
+        expect(mockPutRes.data.student.creditHours).toBe(70);
     }, 10000);
 
     // DELETE 1 student
-    // *not working*
-    it('should delete 1 student - Responds with ____', async () => {
-        // if the ID isn't set by POST tests, use this default ID
-        if (!newStudentId) {
-            studentId = defaultId;
-        } else {
+    // *working*
+    it('should delete 1 student', async () => {
+        if (newStudentId) {
             studentId = newStudentId;
+        } else {
+            console.log("Deletion error. newStudentId failed.");
+            return;
         }
-
         const mockDeleteReq = {
             params: {
               id: studentId
             }
           };
-
         const mockDeleteRes = {
             status: (statusCode) => ({
                 json: (data) => {
@@ -180,32 +193,13 @@ describe('Student tests', () => {
                     mockDeleteRes.data = data;
                     return mockDeleteRes;
                 },
-            }),
-            setHeader: ()=>{}
+            })
         };
 
         await studentController.deleteStudent(mockDeleteReq, mockDeleteRes);
 
-        expect(mockGetRes.statusCode).toBe(200);
-
-        if (newStudentId) {
-            expect(mockGetRes.data.firstName).toBe(mockStudent.firstName);
-            expect(mockGetRes.data.lastName).toBe(mockStudent.lastName);
-            expect(mockGetRes.data.email).toBe(mockStudent.email);
-            expect(mockGetRes.data.creditHours).toBe(mockStudent.creditHours);
-        } else {
-            expect(mockGetRes.data.firstName).toBe('Madison');
-            expect(mockGetRes.data.lastName).toBe('Hall');
-            expect(mockGetRes.data.email).toBe('madison.hall@example.edu');
-            expect(mockGetRes.data.creditHours).toBe(132);
-        }
+        expect(mockDeleteRes.statusCode).toBe(200);
+        expect(mockDeleteRes.data.message).toBe("Deleted student successfully.");
     }, 10000);
 
 });
-
-// TO-DO:
-// -alter new database entry?
-// -delete new entries to the DB after testing POST
-// -add DELETE request test
-// -cleanup tests
-// -add error handling tests

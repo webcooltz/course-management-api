@@ -34,6 +34,9 @@ const createStudent = async (req, res) => {
     res.status(400).send({ message: "Request body cannot be empty" });
     return;
   }
+  if (!req.body.creditHours) {
+    req.body.creditHours = 0;
+  }
   const student = new Student({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -41,11 +44,7 @@ const createStudent = async (req, res) => {
     creditHours: req.body.creditHours
   });
 
-  // const response = await mongodb.getDb().db().collection('students').insertOne(student);
-
   const response = await student.save();
-
-  console.log("res (controller): ", res);
 
   if (response) {
     res.status(201).json({
@@ -65,6 +64,10 @@ const createStudent = async (req, res) => {
       res.status(400).send({ message: "Request body cannot be empty" });
       return;
     }
+    if (!req.body.creditHours) {
+      req.body.creditHours = 0;
+    }
+
     const studentId = new ObjectId(req.params.id);
     const student = {
       firstName: req.body.firstName,
@@ -73,21 +76,13 @@ const createStudent = async (req, res) => {
       creditHours: req.body.creditHours
     };
 
-    // const response = await mongodb
-    //   .getDb()
-    //   .db()
-    //   .collection('students')
-    //   .replaceOne({ _id: studentId }, { student });
-
     const response = await Student.findOneAndUpdate(
       { _id: studentId},
       { $set: student },
       { new: true }
-  ).exec();
+    ).exec();
 
-
-    // console.log(response);
-    if (response.modifiedCount > 0) {
+    if (response) {
       res.status(204).json({
         response: response,
         message: "Updated student successfully.",
@@ -102,11 +97,7 @@ const createStudent = async (req, res) => {
     // #swagger.tags = ['Student']
     // #swagger.summary = 'Delete student by id'
     const studentId = new ObjectId(req.params.id);
-    // const response = await mongodb.getDb().db().collection('students').deleteOne({ _id: studentId }, true);
-
     const response = await Student.deleteOne({ _id: studentId});
-
-    console.log(response);
     if (response.deletedCount > 0) {
       res.status(200).json({
         response: response,
