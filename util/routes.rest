@@ -96,12 +96,12 @@ DELETE http://localhost:3000/faculty/640b53715709a936f541f4e6 HTTP/1.1
 GET http://localhost:3000/books
 Authorization: Bearer
 
-### GET all books with (BAD) auth
-GET http://localhost:3000/books
-Authorization: Bearer 123
+# ### GET all books with (BAD) auth
+# GET http://localhost:3000/books
+# Authorization: Bearer 123
 
 ### GET 1 book
-GET http://localhost:3000/books/64109aafca5f253b4f9fe1c2
+GET http://localhost:3000/books/640797c654411daf5940305b
 ### POST - create book (good schema)
 POST http://localhost:3000/books HTTP/1.1
 content-type: application/json

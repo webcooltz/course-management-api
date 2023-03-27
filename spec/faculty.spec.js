@@ -2,18 +2,18 @@ const request = require('supertest');
 const app = require('../index');
 const mongodb = require('../db/connect');
 const port = process.env.PORT || 3000;
-const studentController = require('../controllers/student');
+const facultyController = require('../controllers/faculty');
 
-describe('Student tests', () => {
-    const mockStudent = {
+fdescribe('Faculty tests', () => {
+    const mockFaculty = {
         firstName: "Johnny",
         lastName: "Baker",
         email: "johnny.baker@example.edu",
-        creditHours: 61
+        bio: "Nulla commodo"
     };
-    const defaultId = '641f6fe3d52ef47907d64063';
-    let newStudentId;
-    let studentId;
+    const defaultId = '640ae891c1f2d58533956f2a';
+    let newFacultyId;
+    let facultyId;
 
     beforeAll(async () => {
         // waits for the DB connection to run the tests
@@ -30,11 +30,11 @@ describe('Student tests', () => {
         });
     });
 
-    // GET /students response
+    // GET /facultys response
     // *working*
     it('route should respond with status 200', (done) => {
         request(app)
-            .get('/students')
+            .get('/facultys')
             .expect(200)
             .end((err, res) => { 
             if (err) return done.fail(err);
@@ -42,23 +42,23 @@ describe('Student tests', () => {
         });
     });
 
-    // GET all students
+    // GET all facultys
     // *working*
-    it('should get all students', async () => {
-        const response = await request(app).get('/students');
+    it('should get all faculty', async () => {
+        const response = await request(app).get('/faculty');
 
         expect(response.status).toBe(200);
         expect(response.body).toBeDefined();
         expect(response.body.length).toBeGreaterThan(0);
     }, 10000);
 
-    // GET 1 student
+    // GET 1 faculty
     // *working*
-    it('should get 1 student', async () => {
-        studentId = defaultId;
+    it('should get 1 faculty', async () => {
+        facultyId = defaultId;
         const mockGetReq = {
             params: {
-              id: studentId
+              id: facultyId
             }
           };
         const mockGetRes = {
@@ -72,25 +72,25 @@ describe('Student tests', () => {
             setHeader: ()=>{}
         };
 
-        await studentController.getSingle(mockGetReq, mockGetRes);
+        await facultyController.getSingle(mockGetReq, mockGetRes);
 
         expect(mockGetRes.statusCode).toBe(200);
-        expect(mockGetRes.data.firstName).toBe('Madison');
-        expect(mockGetRes.data.lastName).toBe('Hall');
-        expect(mockGetRes.data.email).toBe('madison.hall@example.edu');
-        expect(mockGetRes.data.creditHours).toBe(132);
+        expect(mockGetRes.data.firstName).toBe('Jared');
+        expect(mockGetRes.data.lastName).toBe('Guzman');
+        expect(mockGetRes.data.email).toBe('jguzman@fakeemail.com');
+        expect(mockGetRes.data.bio).toBe('Nulla commodo nulla quisque ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique tortor eu');
     }, 10000);
 
     describe('CREATE tests', () => {
-        // POST new student
+        // POST new faculty
         // *working*
-        it('should create a new student', async () => {
+        it('should create a new faculty', async () => {
             const mockReq = {
             body: {
-                firstName: mockStudent.firstName,
-                lastName: mockStudent.lastName,
-                email: mockStudent.email,
-                creditHours: mockStudent.creditHours
+                firstName: mockFaculty.firstName,
+                lastName: mockFaculty.lastName,
+                email: mockFaculty.email,
+                bio: mockFaculty.bio
             }
             };
             const mockRes = {
@@ -103,15 +103,15 @@ describe('Student tests', () => {
                 })
             };
         
-            await studentController.createStudent(mockReq, mockRes);
-            newStudentId = mockRes.data.student._id;
+            await facultyController.createFaculty(mockReq, mockRes);
+            newFacultyId = mockRes.data.faculty._id;
         
-            expect(mockRes.data.message).toBe("Created new student successfully.");
+            expect(mockRes.data.message).toBe("Created new faculty successfully.");
             expect(mockRes.statusCode).toBe(201);
-            expect(mockRes.data.student.firstName).toBe('Johnny');
-            expect(mockRes.data.student.lastName).toBe('Baker');
-            expect(mockRes.data.student.email).toBe('johnny.baker@example.edu');
-            expect(mockRes.data.student.creditHours).toBe(61);
+            expect(mockRes.data.faculty.firstName).toBe('Johnny');
+            expect(mockRes.data.faculty.lastName).toBe('Baker');
+            expect(mockRes.data.faculty.email).toBe('johnny.baker@example.edu');
+            expect(mockRes.data.faculty.bio).toBe('Nulla commodo');
         }, 10000);
 
         // *working*
@@ -130,38 +130,38 @@ describe('Student tests', () => {
                 })
             };
         
-            await studentController.createStudent(mockReq, mockRes);
+            await facultyController.createFaculty(mockReq, mockRes);
         
-            expect(mockRes.data.message).toBe("Student validation failed: firstName: Path `firstName` is required., lastName: Path `lastName` is required., email: Path `email` is required.");
+            expect(mockRes.data.message).toBe("Faculty validation failed: firstName: Path `firstName` is required., lastName: Path `lastName` is required., bio: Path `bio` is required., email: Path `email` is required.");
             expect(mockRes.statusCode).toBe(400);
         }, 10000);
 
     });
 
-    // PUT update new student
+    // PUT update new faculty
     // *working*
-    it('should update the new student', async () => {
-        if (newStudentId) {
-            studentId = newStudentId;
+    it('should update the new faculty', async () => {
+        if (newFacultyId) {
+            facultyId = newFacultyId;
         } else {
-            console.log("PUT student - newStudentId error");
+            console.log("PUT faculty - newFacultyId error");
             return;
         }
-        const altStudent = {
+        const altFaculty = {
             firstName: "John",
             lastName: "BGood",
             email: "johnny.bgood@example.edu",
-            creditHours: 70
+            bio: "Nulla commodo"
         };
         const mockPutReq = {
             params: {
-                id: studentId
+                id: facultyId
             },
             body: {
-                firstName: altStudent.firstName,
-                lastName: altStudent.lastName,
-                email: altStudent.email,
-                creditHours: altStudent.creditHours
+                firstName: altFaculty.firstName,
+                lastName: altFaculty.lastName,
+                email: altFaculty.email,
+                bio: altFaculty.bio,
             }
         };
         const mockPutRes = {
@@ -174,28 +174,28 @@ describe('Student tests', () => {
               })
         };
     
-        await studentController.updateStudent(mockPutReq, mockPutRes);
+        await facultyController.updateFaculty(mockPutReq, mockPutRes);
     
-        expect(mockPutRes.data.message).toBe("Updated student successfully.");
+        expect(mockPutRes.data.message).toBe("Updated faculty successfully.");
         expect(mockPutRes.statusCode).toBe(204);
-        expect(mockPutRes.data.student.firstName).toBe('John');
-        expect(mockPutRes.data.student.lastName).toBe('BGood');
-        expect(mockPutRes.data.student.email).toBe('johnny.bgood@example.edu');
-        expect(mockPutRes.data.student.creditHours).toBe(70);
+        expect(mockPutRes.data.faculty.firstName).toBe('John');
+        expect(mockPutRes.data.faculty.lastName).toBe('BGood');
+        expect(mockPutRes.data.faculty.email).toBe('johnny.bgood@example.edu');
+        expect(mockPutRes.data.faculty.bio).toBe('Nulla commodo');
     }, 10000);
 
-    // DELETE 1 student
+    // DELETE 1 faculty
     // *working*
-    it('should delete 1 student', async () => {
-        if (newStudentId) {
-            studentId = newStudentId;
+    it('should delete 1 faculty', async () => {
+        if (newFacultyId) {
+            facultyId = newFacultyId;
         } else {
-            console.log("Deletion error. newStudentId failed.");
+            console.log("Deletion error. newFacultyId failed.");
             return;
         }
         const mockDeleteReq = {
             params: {
-              id: studentId
+              id: facultyId
             }
           };
         const mockDeleteRes = {
@@ -208,9 +208,9 @@ describe('Student tests', () => {
             })
         };
 
-        await studentController.deleteStudent(mockDeleteReq, mockDeleteRes);
+        await facultyController.deleteFaculty(mockDeleteReq, mockDeleteRes);
 
         expect(mockDeleteRes.statusCode).toBe(200);
-        expect(mockDeleteRes.data.message).toBe("Deleted student successfully.");
+        expect(mockDeleteRes.data.message).toBe("Deleted faculty successfully.");
     }, 10000);
 });

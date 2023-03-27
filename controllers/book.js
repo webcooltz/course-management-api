@@ -1,35 +1,31 @@
 // book controller
-const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 const Book = require('../models/book');
+const mongoose = require('mongoose');
 
 const getAll = async (req, res) => {
   // #swagger.tags = ['Book']
   // #swagger.summary = 'Get all books'
-  
-  // const result = await mongodb.getDb().db().collection('books').find();
-
-  const result = await Book.find().exec();
-
-  // result.toArray().then((lists) => {
+  const books = await Book.find();
+  if (books) {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result);
-  // });
+    res.status(200).json(books);
+  } else {
+    res.status(500).json({ error: 'Unable to retrieve books' });
+  }
 };
 
 const getSingle = async (req, res) => {
   // #swagger.tags = ['Book']
   // #swagger.summary = 'Get book by id'
   const bookId = new ObjectId(req.params.id);
-
-  // const result = await mongodb.getDb().db().collection('books').find({ _id: bookId });
-
-  const result = await Book.findOne({ _id: bookId });
-
-  // result.toArray().then((lists) => {
+  const book = await Book.findOne({ _id: bookId });
+  if (book) {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result);
-  // });
+    res.status(200).json(book);
+  } else {
+    res.status(500).json({ error: 'Unable to retrieve book' });
+  }
 };
 
 const createBook = async (req, res) => {
@@ -39,7 +35,7 @@ const createBook = async (req, res) => {
     res.status(400).send({ message: "Request body cannot be empty" });
     return;
   }
-  const book = new Book ({
+  const book = new Book({
     title: req.body.title,
     author: req.body.author,
     pages: req.body.pages,
@@ -47,18 +43,23 @@ const createBook = async (req, res) => {
     publishYear: req.body.publishYear
   });
 
-  // const response = await mongodb.getDb().db().collection('books').insertOne(book);
-
-  const response = await book.save();
-
-  if (response) {
-    res.status(201).json({
-      response: response,
-      message: "Created new Book successfully.",
-      book: book
-    });
-  } else {
-      res.status(500).json(response.error || 'Some error occurred while creating the book.');
+  try {
+    const response = await book.save();
+    if (response) {
+      res.status(201).json({
+        response: response,
+        message: "Created new book successfully.",
+        book: book
+      });
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while creating the book.');
+    }
+  } catch (err) {
+    if (err instanceof mongoose.Error.ValidationError) {
+      res.status(400).json({ message: err.message });
+    } else {
+      res.status(500).json({ message: 'Some error occurred while creating the book.' });
+    }
   }
 };
   
@@ -69,6 +70,7 @@ const createBook = async (req, res) => {
       res.status(400).send({ message: "Request body cannot be empty" });
       return;
     }
+
     const bookId = new ObjectId(req.params.id);
     const book = {
       title: req.body.title,
@@ -77,19 +79,13 @@ const createBook = async (req, res) => {
       genre: req.body.genre,
       publishYear: req.body.publishYear
     };
-    // const response = await mongodb
-    //   .getDb()
-    //   .db()
-    //   .collection('books')
-    //   .replaceOne({ _id: bookId }, { book });
 
     const response = await Book.findOneAndUpdate(
-        { _id: bookId},
-        { $set: book },
-        { new: true }
+      { _id: bookId},
+      { $set: book },
+      { new: true }
     ).exec();
 
-    // console.log(response);
     if (response) {
       res.status(204).json({
         response: response,
@@ -97,7 +93,7 @@ const createBook = async (req, res) => {
         book: book
       });
     } else {
-      res.status(500).json(response.error || 'Some error occurred while updating the book.');
+        res.status(500).json('Some error occurred while updating the book.');
     }
   };
   
@@ -105,11 +101,7 @@ const createBook = async (req, res) => {
     // #swagger.tags = ['Book']
     // #swagger.summary = 'Delete book by id'
     const bookId = new ObjectId(req.params.id);
-    // const response = await mongodb.getDb().db().collection('books').deleteOne({ _id: bookId }, true);
-
     const response = await Book.deleteOne({ _id: bookId});
-
-    console.log(response);
     if (response.deletedCount > 0) {
       res.status(200).json({
         response: response,

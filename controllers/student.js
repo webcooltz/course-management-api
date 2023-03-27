@@ -1,6 +1,7 @@
 // student controller
 const ObjectId = require('mongodb').ObjectId;
 const Student = require('../models/student');
+const mongoose = require('mongoose');
 
 const getAll = async (req, res) => {
   // #swagger.tags = ['Student']
@@ -44,16 +45,23 @@ const createStudent = async (req, res) => {
     creditHours: req.body.creditHours
   });
 
-  const response = await student.save();
-
-  if (response) {
-    res.status(201).json({
-      response: response,
-      message: "Created new Student successfully.",
-      student: student
-    });
-  } else {
-      res.status(500).json(response.error || 'Some error occurred while creating the student.');
+  try {
+    const response = await student.save();
+    if (response) {
+      res.status(201).json({
+        response: response,
+        message: "Created new student successfully.",
+        student: student
+      });
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while creating the student.');
+    }
+  } catch (err) {
+    if (err instanceof mongoose.Error.ValidationError) {
+      res.status(400).json({ message: err.message });
+    } else {
+      res.status(500).json({ message: 'Some error occurred while creating the student.' });
+    }
   }
 };
   
@@ -89,7 +97,7 @@ const createStudent = async (req, res) => {
         student: student
       });
     } else {
-      res.status(500).json(response.error || 'Some error occurred while updating the student.');
+      res.status(500).json('Some error occurred while updating the student.');
     }
   };
   
