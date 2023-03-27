@@ -1,19 +1,14 @@
 // course controller
-const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 const Course = require('../models/course');
-
+const mongoose = require('mongoose');
 
 const getAll = async (req, res) => {
     // #swagger.tags = ['Course']
     // #swagger.summary = 'Get all courses'
     try {
-
-        // const result = await mongodb.getDb().db().collection('courses').find().toArray();
-
         const result = await Course.find().exec();
 
-        // console.log(result);
         if (result) {
             res.status(200).json(result);
         } else {
@@ -41,8 +36,6 @@ const getSingle = async (req, res) => {
             _id: new ObjectId(req.params.id),
         };
 
-        // const result = await mongodb.getDb().db().collection('courses').find(filter).toArray();
-
         const result = await Course.findOne(filter);
 
         if (result) {
@@ -53,21 +46,18 @@ const getSingle = async (req, res) => {
                 message: "Id not found. Please use a valid id.",
             };
         }
-        // console.log(result);
     } catch (err) {
-        res.status(err.status || 400).json(
-            { message: err.message } ||
-                "An error ocurred while locating a course."
-        );
-    }
+            res.status(err.status || 400).json(
+                { message: err.message } ||
+                    "An error ocurred while locating a course."
+            );
+          }
 };
 
 const createCourse = async (req, res) => {
     // #swagger.tags = ['Course']
     // #swagger.summary = 'Create course'
     try {
-        // const Course = req.body;
-
         const course = new Course ({
             name: req.body.name,
             subject: req.body.subject,
@@ -79,11 +69,8 @@ const createCourse = async (req, res) => {
             books: req.body.books,
         });
 
-        // const result = await mongodb.getDb().db().collection('courses').insertOne(course);
-
         const result = await course.save();
 
-        // console.log(result);
         if (result) {
             res.status(201).json(result._id);
         } else {
@@ -94,10 +81,14 @@ const createCourse = async (req, res) => {
             };
         }
     } catch (err) {
-        res.status(err.status || 500).json(
-            { message: err.message } ||
-                "An error occured while creating a course."
-        );
+        if (err instanceof mongoose.Error.ValidationError) {
+            res.status(400).json({ message: err.message });
+          } else {
+            res.status(err.status || 500).json(
+                { message: err.message } ||
+                    "An error occured while creating a course."
+            );
+        }
     }
 };
 
@@ -112,10 +103,11 @@ const updateCourse = async (req, res) => {
             };
         }
 
-        const filter = {
-            _id: new ObjectId(req.params.id),
-        };
+        // const filter = {
+        //     _id: new ObjectId(req.params.id),
+        // };
 
+        const courseId = new ObjectId(req.params.id);
         const course = {
             name: req.body.name,
             subject: req.body.subject,
@@ -127,15 +119,18 @@ const updateCourse = async (req, res) => {
             books: req.body.books,
         };
 
-        // const result = await mongodb.getDb().db().collection('courses').replaceOne(filter, course);
+        // const result = await Course.findOneAndUpdate(
+        //     filter,
+        //     { $set: course },
+        //     { new: true }
+        // ).exec();
 
         const result = await Course.findOneAndUpdate(
-            filter,
+            { _id: courseId},
             { $set: course },
             { new: true }
-        ).exec();
+          ).exec();
 
-        // console.log(result);
         if (result) {
             res.status(204).send(result);
         } else {
@@ -167,8 +162,6 @@ const deleteCourse = async (req, res) => {
             _id: new ObjectId(req.params.id),
         };
 
-        // const result = await mongodb.getDb().db().collection('courses').removeOne(filter);
-
         const result = await Course.deleteOne(filter);
 
         if (result.deletedCount > 0) {
@@ -180,7 +173,6 @@ const deleteCourse = async (req, res) => {
             };
         }
     } catch (err) {
-        // console.log(err);
         res.status(err.status || 500).json(
             { message: err.message } ||
                 "An error occured while deleting a course."

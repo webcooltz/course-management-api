@@ -4,7 +4,7 @@ const mongodb = require('../db/connect');
 const port = process.env.PORT || 3000;
 const facultyController = require('../controllers/faculty');
 
-fdescribe('Faculty tests', () => {
+describe('Faculty tests', () => {
     const mockFaculty = {
         firstName: "Johnny",
         lastName: "Baker",
@@ -30,11 +30,11 @@ fdescribe('Faculty tests', () => {
         });
     });
 
-    // GET /facultys response
+    // GET /faculty response
     // *working*
     it('route should respond with status 200', (done) => {
         request(app)
-            .get('/facultys')
+            .get('/faculty')
             .expect(200)
             .end((err, res) => { 
             if (err) return done.fail(err);
@@ -42,7 +42,7 @@ fdescribe('Faculty tests', () => {
         });
     });
 
-    // GET all facultys
+    // GET all faculty
     // *working*
     it('should get all faculty', async () => {
         const response = await request(app).get('/faculty');
@@ -178,10 +178,10 @@ fdescribe('Faculty tests', () => {
     
         expect(mockPutRes.data.message).toBe("Updated faculty successfully.");
         expect(mockPutRes.statusCode).toBe(204);
-        expect(mockPutRes.data.faculty.firstName).toBe('John');
-        expect(mockPutRes.data.faculty.lastName).toBe('BGood');
-        expect(mockPutRes.data.faculty.email).toBe('johnny.bgood@example.edu');
-        expect(mockPutRes.data.faculty.bio).toBe('Nulla commodo');
+        expect(mockPutRes.data.firstName).toBe('John');
+        expect(mockPutRes.data.lastName).toBe('BGood');
+        expect(mockPutRes.data.email).toBe('johnny.bgood@example.edu');
+        expect(mockPutRes.data.bio).toBe('Nulla commodo');
     }, 10000);
 
     // DELETE 1 faculty
