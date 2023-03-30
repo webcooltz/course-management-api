@@ -34,48 +34,6 @@
     }
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/login/": {
-      "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "example": "any"
-                  },
-                  "password": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/students/": {
       "get": {
         "tags": [
@@ -90,6 +48,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -107,16 +68,27 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
+                  "creditHours": {
+                    "example": "any"
+                  },
                   "firstName": {
                     "example": "any"
                   },
@@ -124,9 +96,6 @@
                     "example": "any"
                   },
                   "email": {
-                    "example": "any"
-                  },
-                  "creditHours": {
                     "example": "any"
                   }
                 }
@@ -159,6 +128,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -185,16 +157,27 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
+                  "creditHours": {
+                    "example": "any"
+                  },
                   "firstName": {
                     "example": "any"
                   },
@@ -202,9 +185,6 @@
                     "example": "any"
                   },
                   "email": {
-                    "example": "any"
-                  },
-                  "creditHours": {
                     "example": "any"
                   }
                 }
@@ -233,10 +213,18 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ]
       }
     },
     "/faculty/": {
@@ -253,6 +241,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -270,10 +261,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -322,6 +321,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -348,10 +350,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -396,10 +406,18 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ]
       }
     },
     "/books/": {
@@ -416,6 +434,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -433,10 +454,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -488,6 +517,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -514,10 +546,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -565,10 +605,18 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ]
       }
     },
     "/courses/": {
@@ -599,10 +647,21 @@
           "201": {
             "description": "Created"
           },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -613,6 +672,9 @@
                     "example": "any"
                   },
                   "subject": {
+                    "example": "any"
+                  },
+                  "code": {
                     "example": "any"
                   },
                   "section": {
@@ -683,10 +745,18 @@
           "204": {
             "description": "No Content"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -697,6 +767,9 @@
                     "example": "any"
                   },
                   "subject": {
+                    "example": "any"
+                  },
+                  "code": {
                     "example": "any"
                   },
                   "section": {
@@ -740,21 +813,34 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
-      }
-    },
-    "/api-docs/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        },
+        "security": [
+          {
+            "oAuth": []
+          }
+        ]
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "oAuth": {
+        "type": "oauth2",
+        "description": "Login with Auth0",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://dev-q5esml8wamkz6d2u.us.auth0.com/authorize?audience=https://cse341-course-mgmt.onrender.com/",
+            "scopes": {}
+          }
+        }
+      }
+    },
     "schemas": {
       "Course": {
         "type": "object",

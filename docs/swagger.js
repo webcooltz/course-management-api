@@ -16,7 +16,7 @@ const doc = {
         },
     ],
     tags: [
-        { name: "Course", description: "Operations about courses",},
+        { name: "Course", description: "Operations about courses" },
         { name: "Student", description: "Operations about students" },
         { name: "Faculty", description: "Operations about faculty" },
         { name: "Book", description: "Operations about books" },
@@ -52,7 +52,24 @@ const doc = {
             publishYear: "1965",
         },
     },
+    components: {
+        securitySchemes: {
+            oAuth: {
+                type: "oauth2",
+                description: "Login with Auth0",
+                flows: {
+                    implicit: {
+                        authorizationUrl:
+                            "https://dev-q5esml8wamkz6d2u.us.auth0.com/authorize?audience=https://cse341-course-mgmt.onrender.com/",
+                        scopes: {},
+                    },
+                },
+            },
+        },
+    },
 };
+
+
 
 const outputFile = "./docs/swagger.json";
 const endpointFiles = ["./routes/index.js"];
