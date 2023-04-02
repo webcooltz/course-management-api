@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
 const {graphqlHTTP} = require('express-graphql');
 const schema = require('./schema');
+const OAuth = require("./middleware/authorize");
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.get("/profile", requiresAuth(), (req, res) => {
 
 //This route will be used as an endpoint to interact with Graphql, 
 //All queries will go through this route. 
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', OAuth.checkLoggedIn, graphqlHTTP({
     //directing express-graphql to use this schema to map out the graph 
     schema,
     //directing express-graphql to use graphiql when goto '/graphql' address in the browser
